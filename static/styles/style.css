@@ -1,0 +1,852 @@
+@charset "UTF-8";
+/*  
+Template name: Colorvoid
+Template URI: http://templates.arcsin.se/colorvoid-website-template/
+Release date: 2008-04-25
+Description: Soft and natural, gray and blue two-column template.
+Author: Viktor Persson
+Author URI: http://arcsin.se/
+
+This template is licensed under a Creative Commons Attribution 2.5 License:
+http://templates.arcsin.se/license/
+*/
+
+/* ----------------------------------------
+   Standard Elements
+------------------------------------------- */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+	padding-bottom: 1px; /* force scrollbars */
+}
+
+body {
+	background: #404040 url('../media/img/body.jpg');
+	font: normal 13px Verdana,sans-serif;
+	color: #345;
+	padding-bottom: 1em;
+}
+
+a {color: #06A;}
+a:hover {color: #036;}
+
+p {padding: 0.1em 0 0.8em;}
+
+h1 {font: normal 1.8em Georgia,Tahoma,sans-serif;}
+h2 {font: normal 1.5em Georgia,sans-serif;}
+h3 {font: bold 1em Tahoma,sans-serif;}
+
+blockquote {
+	background: #FFF url('../media/img/quote.gif') no-repeat;
+	border: 1px solid #EAEAEA;
+	color: #555;
+	display: block;
+	font: normal 1em sans-serif;
+	margin-bottom: 1em;
+	padding: 10px 1em 0.2em 42px;
+}
+
+code {
+	display: block;
+	background: #FFFFFA;
+	color: #335;
+	border: 1px solid #E8E8D5;
+	padding: 5px 10px;
+	overflow: auto;
+	margin: 1em 0;
+	font-size: 0.9em;
+	line-height: 1.5em;
+}
+
+ul,ol {margin: 0 0 1em 1.6em;}
+ul ul, ol ol {margin: 0.3em 0 0.3em 1em;}
+
+img {border: none;}
+img.bordered {background: #FFF; padding: 5px; border: 1px solid #DDD;}
+img.left {margin-right: 1em;}
+img.right {margin-left: 1em;}
+
+small,.small {font-size: 0.8em;}
+big,.big {font-size: 1.2em;}
+
+/* ----------------------------------------
+  Forms
+------------------------------------------- */
+
+/* Inputs */
+input#s, textarea, input.styled {
+	border: 1px solid #BBB;
+	padding: 3px;
+	width: 160px;
+	font: normal 1em Verdana,sans-serif;
+}
+textarea {width: 440px;}
+#searchsubmit {
+	border: 1px solid #BBB;
+	background: #EEE;
+	font: normal 0.9em Verdana,sans-serif;
+	padding: 2px 3px;
+}
+
+/* Seachform */
+table.search {
+	width: 100%;
+	border-collapse: collapse;
+}
+.search td {vertical-align: center;}
+
+/* 
+input.submit {
+    vertical-align: center;
+    background: transparent url('/init/static/media/img/button_submit.gif') no-repeat center top;    
+    width: 100px;
+}
+*/
+
+/* ----------------------------------------
+   Layout
+------------------------------------------- */
+
+/* Main */
+#layout_wrapper {
+	margin: 40px auto 0;
+	width: 780px;	
+}
+#layout_container {
+	background: #FFF;
+	padding: 0 5px;
+}
+#layout_edgetop, #layout_edgebottom {
+	background: url('../media/img/layout_edges.gif') no-repeat left top;
+	display: block;
+	height: 10px;	
+	font-size: 0;
+	line-height: 0;
+}
+#layout_edgebottom {background-position: left bottom;}
+
+/* Site Title */
+#site_title {
+	background: #C5DEF0 url('../media/img/site_title.jpg') repeat-x left top;
+	padding: 6px 18px;
+}
+#site_title h1 {
+	font: normal 2.4em sans-serif;
+	letter-spacing: -1px;
+}
+#site_title h1,#site_title h1 a {color: #507A9A;}
+#site_title h1 a {text-decoration: none;}
+#site_title h1 a:hover {color: #305A7A}
+#site_title h2 {
+	padding-top: 1.4em;
+	font: normal 1.1em sans-serif;
+	color: #679;
+}
+
+#top_separator {
+	background: url('../media/img/top_separator.gif') repeat-x left top;
+	display: block;
+	font-size: 0;
+	height: 3px;
+	line-height: 0;
+}
+
+/* Navigation */
+#navigation {
+	background: #739CBA url('../media/img/navigation.jpg') no-repeat left bottom;
+	padding: 82px 10px 0;
+}
+
+/* Tabs */
+#tabs ul {
+	margin: 0;
+	padding: 0;
+}
+#tabs li {
+	display:inline;
+	list-style:none;
+}
+#tabs li li{
+	background: #FFFFFF;
+}
+#tabs li li a{
+	background: #FFFFFF;
+}
+#tabs a {
+	background: url('../media/img/tableftc.gif') no-repeat left top;
+	float: left;
+	font: bold 0.9em sans-serif;
+	margin-right: 3px;
+	padding-left: 4px;
+	text-decoration: none;
+}
+#tabs a span {
+	float: left;
+	display: block;
+	background: url('../media/img/tabrightc.gif') no-repeat right top;
+	padding: 5px 10px 5px 6px;
+	color: #608AAA;
+}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#tabs a span {float: none;}
+/* End IE5-Mac hack */
+
+#tabs a:hover span {color: #608AAA;}
+#tabs a:hover {background-position: 0% -42px;}
+#tabs a:hover span {background-position:100% -42px;}
+
+#tabs li.current_page_item a {color: #47A; background-position: 0% -42px;}
+#tabs li.current_page_item a span {background-position:100% -42px;}
+
+/* Main Layout */
+#main_left {width: 545px;}
+#main_right {width: 220px;}
+
+/* Footer */
+#footer {
+	background: #A3B5C1 url('../media/img/footer.gif') no-repeat left top;
+	padding: 8px 12px 2px;
+	font-size: 0.85em;
+	color: #FAFCFF;
+}
+#footer .right {color: #C8DBE8;}
+#footer .right a {
+	color: #D3E5F1;
+	text-decoration: none;
+}
+#footer .right a:hover {
+	color: #FFE;
+	text-decoration: underline;
+}
+
+
+/* ----------------------------------------
+   Miscellaneous
+------------------------------------------- */
+
+/* Images */
+img.bordered {
+	border: 1px solid #DDD;
+	background: #FFF;
+	padding: 5px;
+}
+
+/* Text */
+.bold {font-weight: bold;}
+.tright {text-align: right;}
+.tcenter {text-align: center;}
+.tright {text-align: right;}
+
+/* Floats */
+.left {float: left;}
+.right {float: right;}
+
+/* Clear */
+.clear,.clearer {clear: both;}
+.clearer,.spacer {
+	display: block;
+	font-size: 0;
+	line-height: 0;
+}
+
+/* Icons */
+span.comment {
+	background: url('../media/img/icon_comment.gif') no-repeat left center;
+	padding-left: 18px;
+}
+
+
+/* ----------------------------------------
+   Post, page
+------------------------------------------- */
+
+.post {
+	margin-bottom: 5px;
+	color: #444;
+}
+.post_title {
+	background: #E8E8E8 url('../media/img/post/title.gif') no-repeat left top;
+	padding: 6px 12px 5px;
+}
+.post_title h1 {font: bold 0.9em Verdana,sans-serif;}
+.post_title h1 a {color: #444;}
+.post_title h1 a:hover {
+	color: #469;
+	text-decoration: underline;
+}
+.post_title h1.left {width: 380px}
+.post_date {
+	color: #999;
+	padding-top: 1px;
+	font-size: 0.85em;
+}
+.post_metadata {
+	margin-top: 5px;
+	padding: 0 5px;
+	background: #F5F5F5;
+}
+.post_metadata .content {
+	border-top: 1px solid #E5E5E5;
+	padding: 8px 5px 6px;
+	font-size: 0.8em;
+	color: #666;
+}
+.post_metadata .content a {color: #567;}
+.post_metadata .content a:hover {color: #002;}
+
+.post_body {
+	background: #F5F5F5 url('../media/img/post/body.gif') repeat-x left top;
+	padding: 10px 10px 1px;
+}
+.post_body img {
+	border: 1px solid #CCC;
+	background: #FFF;
+	padding: 3px;
+}
+.post_bottom {
+	background: url('../media/img/post/bottom.gif') no-repeat left top;
+	display: block;
+	height: 5px;
+	font-size: 0;
+	line-height: 0;
+}
+.post_search_text {
+	font-size: 0.85em;
+	padding: 2px 0;
+}
+
+
+/* ----------------------------------------
+   Sidebar box
+------------------------------------------- */
+
+.box {margin-bottom: 5px;}
+.box_title {
+	background: #C6D2DB url('../media/img/box/title.gif') no-repeat left top;
+	padding: 6px 10px 5px;
+	font-weight: bold;
+	font-size: 0.9em;
+	color: #505E69;
+}
+.box_body {
+	background: #DAE3E9 url('../media/img/box/body.gif') repeat-x left top;
+	padding: 8px 10px 1px;
+	font-size: 0.9em;
+}
+.box_bottom {
+	background: url('../media/img/box/bottom.gif') no-repeat left top;
+	display: block;
+	height: 5px;
+	font-size: 0;
+	line-height: 0;
+}
+
+.box ul {
+	margin-left: 0;
+	border-bottom: 1px solid #E2ECF2;
+}
+.box li:first-child {border-top: none;}
+.box ul li {
+	list-style: none;
+	padding: 4px;
+	border-top: 1px solid #E2ECF2;
+	border-bottom: 1px solid #D0D8DE;
+}
+.box ul a {text-decoration: none;}
+.box ul a:hover {text-decoration: underline;}
+
+
+/* ----------------------------------------
+   Lists
+------------------------------------------- */
+
+.nicelist {
+	padding: 1px 0 0;
+}
+.nicelist ol {margin: 0;}
+.nicelist ol li {
+	list-style: none;
+	padding: 8px 10px 1px;
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #CCC;
+}
+.nicelist li.alt {background: #EEE;}
+.nicelist .body {padding-top: 5px;}
+.nicelist .date {
+	color: #888;
+	padding-top: 4px;
+	font-size: 0.85em;
+}
+.nicelist .date a {
+	color: #567;
+	text-decoration: none;
+}
+.nicelist .date a:hover {
+	color: #002;
+	text-decoration: underline;
+}
+
+
+/* ----------------------------------------
+   Archives
+------------------------------------------- */
+
+.archive_title {font: normal 1.4em sans-serif;}
+.archive_title a {text-decoration: none;}
+.archive_title a:hover {text-decoration: underline;}
+.archive_postinfo {
+	font: normal 1em sans-serif;
+	padding-bottom: 6px;
+}
+
+
+/* ----------------------------------------
+   Comments
+------------------------------------------- */
+
+.comment_gravatar {width: 48px;}
+.comment_gravatar img {padding: 2px;}
+.comment_author {padding-top: 2px;}
+
+
+/* ----------------------------------------
+   Pagination
+------------------------------------------- */
+
+.pagenavigation {
+	background: #DDEBF4 url('../media/img/pagenav_top.gif') no-repeat;
+	margin-bottom: 5px;
+}
+.pagenav_bottom {
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	height: 5px;
+	background: url('../media/img/pagenav_bottom.gif') no-repeat;
+}
+.pagenav {
+	font-size: 0.85em;
+	padding: 5px 8px 0;
+}
+.pagenav a {
+	color: #6A7DA4;
+	text-decoration: none;
+}
+.pagenav a:hover {
+	color: #002;
+	text-decoration: underline;
+}
+
+
+/* ----------------------------------------
+   Width, height, margin, padding
+------------------------------------------- */
+
+.h5 {height: 5px;}
+.p5 {padding: 5px;}
+.p10 {padding: 10px;}
+
+ /* Flash */
+ .flash { 
+        margin: 0 auto; 
+        text-align: center; 
+        clear: both; 
+        border: 1px #000000; 
+        background-color: #DAE3E9; 
+        color: #505E69; 
+        margin-top: 0.0em; 
+        margin-bottom: 1.0em; 
+        padding-top: 1.0em; 
+        padding-bottom: 1.0em; 
+        cursor: pointer; 
+}
+div.error { 
+        background-color: red; 
+        color: white; 
+        padding: 3px
+}
+
+/* web2py menu */
+ul.web2py-menu,
+ul.web2py-menu ul,
+ul.web2py-menu li,
+ul.web2py-menu a
+{
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+ul.web2py-menu,
+ul.web2py-menu li,
+ul.web2py-menu ul
+{
+    list-style: none;
+}
+
+ul.web2py-menu ul
+{
+    display: none;
+}
+
+ul.web2py-menu li
+{
+    position: relative;
+    z-index: 1;
+}
+
+ul.web2py-menu li:hover
+{
+    z-index: 999;
+}
+
+ul.web2py-menu li:hover > ul
+{
+    display: block;
+    position: absolute;
+}
+
+ul.web2py-menu-horizontal li
+{
+    float: left;
+    width: auto;
+}
+
+ul.web2py-menu-hRight li
+{
+    float: right;
+}
+
+ul.web2py-menu-vertical li
+{
+    float: none;
+}
+
+ul.web2py-menu-vertical,
+ul.web2py-menu-vertical ul
+{
+    width: 10em;
+}
+
+ul.web2py-menu-wide
+{
+    width: 100%;
+}
+
+ul.web2py-menu-vRight
+{
+    float: right;
+}
+
+ul.web2py-menu-lFloat
+{
+    float: left;
+}
+
+ul.web2py-menu-noFloat
+{
+    float: none;
+}
+
+div.web2py-menu-center ul.web2py-menu
+{
+    float: left;
+    position: relative;
+    left: 50%;
+}
+
+div.web2py-menu-center ul.web2py-menu li
+{
+    position: relative;
+    left: -50%;
+}
+
+div.web2py-menu-center ul.web2py-menu li li
+{
+    left: auto;
+}
+
+ul.web2py-menu-horizontal ul
+{
+    top: auto;
+    right: auto;
+    left: auto;
+    margin-top: -1px;
+}
+
+ul.web2py-menu-vertical ul
+{
+    left: 60%;
+    right: auto;
+    top: auto;
+    margin-top: -0.5em;
+}
+
+ul.web2py-menu-vRight ul,
+ul.web2py-menu-hRight ul.web2py-menu-vertical ul,
+ul.web2py-menu-dRight,
+ul.web2py-menu-dRight ul
+{
+    left: -60%;
+    right: auto;
+    top: auto;
+    margin-top: -0.5em;
+}
+
+ul.web2py-menu-hRight ul
+{
+    left: auto;
+    right: 0;
+    top: auto;
+    margin-top: -1px;
+}
+
+ul.web2py-menu li a
+{
+    border: solid 1px #99f
+}
+
+ul.web2py-menu-horizontal li
+{
+    margin-bottom: -1px;
+    margin-left: -1px;
+}
+
+ul.web2py-menu-horizontal
+{
+    padding-left: 1px ;
+}
+
+ul.web2py-menu-vertical li
+{
+    margin-left: 0;
+    margin-top: -1px;
+}
+
+ul.web2py-menu-vertical
+{
+    border-top: solid 1px #fff;
+}
+
+ul.web2py-menu li a
+{
+    padding: 2px 5px 3px;
+}
+
+ul.web2py-menu li a:link,
+ul.web2py-menu li a:hover,
+ul.web2py-menu li a:visited,
+ul.web2py-menu li a:active
+{
+    text-decoration: none;
+}
+
+ul.web2py-menu li.sfhover a:active,
+ul.web2py-menu li:hover a:active
+{
+    color: #fff;
+    background-color: #c00;
+}
+
+ul.web2py-menu li
+{
+    background-color: #ddf;
+}
+
+ul.web2py-menu li:hover,
+ul.web2py-menu li.sfhover
+{
+    background-color: #eda;
+}
+
+ul.web2py-menu li a:hover
+{
+    background-color: #ffc;
+}
+
+ul.web2py-menu li.web2py-menu-expand a,
+ul.web2py-menu li.web2py-menu-expand li.web2py-menu-expand a,
+ul.web2py-menu li.web2py-menu-expand li.web2py-menu-expand li.web2py-menu-expand a
+{
+    padding-right: 25px;
+    background-image: url("expand-right.gif");
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+ul.web2py-menu-vRight li.web2py-menu-expand a,
+ul.web2py-menu-vRight li.web2py-menu-expand li.web2py-menu-expand a,
+ul.web2py-menu-vRight li.web2py-menu-expand li.web2py-menu-expand li.web2py-menu-expand a,
+ul.web2py-menu-hRight li.web2py-menu-expand a,
+ul.web2py-menu-hRight li.web2py-menu-expand li.web2py-menu-expand a,
+ul.web2py-menu-hRight li.web2py-menu-expand li.web2py-menu-expand li.web2py-menu-expand a
+{
+    padding-right: 5px;
+    padding-left: 20px;
+    background-image: url("expand-left.gif");
+    background-repeat: no-repeat;
+    background-position: -5px 50%;
+}
+
+ul.web2py-menu-horizontal li.web2py-menu-expand a
+{
+    padding-left: 5px;
+    padding-right: 15px;
+    background-image: url("expand-down.gif");
+    background-position: 100% 50%;
+}
+
+ul.web2py-menu li.web2py-menu-expand li a,
+ul.web2py-menu li.web2py-menu-expand li.web2py-menu-expand li a,
+ul.web2py-menu li.web2py-menu-expand li.web2py-menu-expand li.web2py-menu-expand li a
+{
+    background-image: none;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+* html ul.web2py-menu
+{
+    display: inline-block;
+    display: block;
+    position: relative;
+    position: static;
+}
+
+* html ul.web2py-menu ul
+{
+    float: left;
+    float: none;
+}
+
+ul.web2py-menu ul
+{
+    background-color: #fff;
+}
+
+* html ul.web2py-menu-vertical li,
+* html ul.web2py-menu-horizontal li ul.web2py-menu-vertical li
+{
+    
+    width: 100%;
+    float: left;
+    clear: left;
+}
+
+*:first-child+html ul.web2py-menu-vertical > li:hover ul
+{
+    min-width: 0;
+}
+
+ul.web2py-menu li a
+{
+    position: relative;
+    min-width: 0;
+}
+
+* html ul.web2py-menu-horizontal li
+{
+    width: 6em;
+    width: auto;
+}
+
+* html div.web2py-menu-center
+{
+    position: relative;
+    z-index: 1;
+}
+
+html:not([lang*=""]) div.web2py-menu-center ul.web2py-menu li a:hover {
+    height: 100%;
+}
+
+html:not([lang*=""])  div.web2py-menu-center ul.web2py-menu li a:hover {
+    height: auto;
+}
+
+* html ul.web2py-menu ul
+{
+    display: block;
+    position: absolute;
+}
+
+* html ul.web2py-menu ul,
+* html ul.web2py-menu-horizontal ul,
+* html ul.web2py-menu-vertical ul,
+* html ul.web2py-menu-vRight ul,
+* html ul.web2py-menu-hRight ul.web2py-menu-vertical ul,
+* html ul.web2py-menu-hRight ul
+{
+    left: -10000px;
+}
+
+* html ul.web2py-menu li.sfhover
+{
+    z-index: 999;
+}
+
+* html ul.web2py-menu li.sfhover ul
+{
+    left: auto;
+}
+
+* html ul.web2py-menu li.sfhover ul ul,
+* html ul.web2py-menu li.sfhover ul ul ul
+{
+    display: none;
+}
+
+* html ul.web2py-menu li.sfhover ul,
+* html ul.web2py-menu li li.sfhover ul,
+* html ul.web2py-menu li li li.sfhover ul
+{
+    display: block;
+}
+
+* html ul.web2py-menu-vertical li.sfhover ul
+{
+    left: 60%;
+}
+
+* html ul.web2py-menu-vRight li.sfhover ul,
+* html ul.web2py-menu-hRight ul.web2py-menu-vertical li.sfhover ul
+{
+    left: -60%;
+}
+/*
+* html ul.web2py-menu iframe
+{
+    
+    
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+    */
+
+.clearfix:after
+{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix
+{
+    min-width: 0;
+    display: inline-block;
+    display: block;
+}
+
+* html .clearfix
+{
+    height: 1%;
+}

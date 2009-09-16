@@ -1,0 +1,13 @@
+{{ extend 'layout.html' }}
+<div class="post">
+    <div class="post_title">
+	<h1 class="left">View image</h1>
+	<div class="clearer">&nbsp;</div>
+    </div>
+    <div class="post_body">
+	{{= image}}
+	{{ if auth.is_logged_in(): }}
+	    {{= A("Edit", _href = "pics/edit/" + request.args[0]) }}
+	{{ pass }}
+    </div>
+</div>

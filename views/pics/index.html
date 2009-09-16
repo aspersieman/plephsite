@@ -1,0 +1,43 @@
+{{extend 'layout.html'}}
+<a href="action/select/image">Search images</a>
+<br />
+{{ if auth.is_logged_in(): }}
+<div class="post">
+    <div class="post_title">
+	<h1 class="left">Upload an image</h1>
+	<div class="clearer">&nbsp;</div>
+    </div>
+    <div class="post_body">
+    {{=form}}
+    </div>
+    <div class="post_bottom"></div>
+</div>
+{{ pass }}
+<div class="post">
+    <div class="post_title">
+	<h1 class="left">Recently updloaded images</h1>
+	<div class="clearer">&nbsp;</div>
+    </div>
+    <div class="post_body">
+    {{for image in images:}}
+    {{=A(image.title, _href ='action/read/image/' + str(image.id))}} - by <strong>{{=image.user_id}}</strong> [{{=str(image.addeddate)[:19]}}]
+	<div>
+	    <a class="zoom" href="#zoom-image-filename-{{=image.id}}">
+	       <img height="100" src="/init/pics/download/{{=image.filename}}" />
+	    </a>
+	    <div class="hidden" id="zoom-image-filename-{{=image.id}}">
+		<img src="/init/pics/download/{{=image.filename}}" width="600" />
+	    </div>
+	</div>
+    {{pass}}
+    </div>
+    <div class="post_bottom"></div>
+</div>
+<div class="pagenavigation">
+    <div class="pagenav">
+            <div class="left"><a href="#">&laquo; Older Entries</a></div>
+            <div class="right"></div>
+            <div class="clearer">&nbsp;</div>
+    </div>
+    <div class="pagenav_bottom"></div>
+</div>

@@ -1,0 +1,21 @@
+{{ extend 'layout.html' }}
+<div class="post">
+    <div class="post_title">
+	{{ if request.args[0] == "read": }}
+	<h1 class="left">View image</h1>
+	{{ elif request.args[0] == "select": }}
+	<h1 class="left">Select image</h1>
+	{{ elif request.args[0] == "update": }}
+	<h1 class="left">Update image</h1>
+	{{ else: }}
+	<h1 class="left"></h1>
+	{{ pass }}
+	<div class="clearer">&nbsp;</div>
+    </div>
+    <div class="post_body">
+	{{= form}}
+	{{ if auth.is_logged_in(): }}
+	    {{= A("Edit", _href = "/init/pics/action/update/image/" + request.args[2]) }}
+	{{ pass }}
+    </div>
+</div>
