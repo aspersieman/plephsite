@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+# coding: utf8
+
 # ##########################################################
 # ## make sure administrator is on localhost
 # ###########################################################
@@ -19,14 +19,21 @@ global_env['datetime'] = datetime
 http_host = request.env.http_host.split(':')[0]
 remote_addr = request.env.remote_addr
 try:
-    hosts = (http_host, socket.gethostbyname(remote_addr))
+    hosts = (http_host, socket.gethostname(),
+             socket.gethostbyname(http_host),
+             '::1','127.0.0.1','::ffff:127.0.0.1')
 except:
     hosts = (http_host, )
-if remote_addr not in hosts:
-    raise HTTP(400)
+
+if request.env.http_x_forwarded_for or request.env.wsgi_url_scheme\
+     in ['https', 'HTTPS']:
+    session.secure()
+elif remote_addr not in hosts:
+    raise HTTP(200, T('appadmin is disabled because insecure channel'))
 if not gluon.fileutils.check_credentials(request):
     redirect('/admin')
 
+ignore_rw = True
 response.view = 'appadmin.html'
 response.menu = [[T('design'), False, URL('admin', 'default', 'design',
                  args=[request.application])], [T('db'), False,
@@ -99,7 +106,7 @@ def index():
 
 def insert():
     (db, table) = get_table(request)
-    form = SQLFORM(db[table])
+    form = SQLFORM(db[table], ignore_rw=ignore_rw)
     if form.accepts(request.vars, session):
         response.flash = T('new record inserted')
     return dict(form=form)
@@ -113,24 +120,7 @@ def insert():
 def download():
     import os
     db = get_database(request)
-    filename = request.args[1]
-
-    # ## for GAE only ###
-
-    (table, field) = filename.split('.')[:2]
-    if table in db.tables and field in db[table].fields:
-        uploadfield = db[table][field].uploadfield
-        if isinstance(uploadfield, str):
-            from gluon.contenttype import contenttype
-            response.headers['Content-Type'] = contenttype(filename)
-            rows = db(db[table][field] == filename).select()
-            return rows[0][uploadfield]
-
-    # ## end for GAE ###
-
-    path = os.path.join(request.folder, 'uploads/', filename)
-    return response.stream(open(path, 'rb'))
-
+    return response.download(request,db)
 
 def csv():
     import gluon.contenttype
@@ -180,15 +170,16 @@ def select():
                 orderby = '~' + orderby
     session.last_orderby = orderby
     session.last_query = request.vars.query
-    form = FORM(TABLE(TR('Query:', '', INPUT(_style='width:400px',
+    form = FORM(TABLE(TR(T('Query:'), '', INPUT(_style='width:400px',
                 _name='query', _value=request.vars.query or '',
-                requires=IS_NOT_EMPTY())), TR('Update:',
+                requires=IS_NOT_EMPTY(error_message=T("Cannot be empty")))), TR(T('Update:'),
                 INPUT(_name='update_check', _type='checkbox',
                 value=False), INPUT(_style='width:400px',
                 _name='update_fields', _value=request.vars.update_fields
-                 or '')), TR('Delete:', INPUT(_name='delete_check',
+                 or '')), TR(T('Delete:'), INPUT(_name='delete_check',
                 _class='delete', _type='checkbox', value=False), ''),
-                TR('', '', INPUT(_type='submit', _value='submit'))))
+                TR('', '', INPUT(_type='submit', _value='submit'))),
+                _action=URL(r=request,args=request.args))
     if request.vars.csvfile != None:
         try:
             import_csv(db[request.vars.table],
@@ -245,7 +236,7 @@ def update():
         redirect(URL(r=request, f='select', args=request.args[:1],
                  vars=dict(query='%s.%s.id>0'
                   % tuple(request.args[:2]))))
-    form = SQLFORM(db[table], record, deletable=True,
+    form = SQLFORM(db[table], record, deletable=True, delete_label=T('Check to delete'), ignore_rw=ignore_rw,
                    linkto=URL(r=request, f='select',
                    args=request.args[:1]), upload=URL(r=request,
                    f='download', args=request.args[:1]))
