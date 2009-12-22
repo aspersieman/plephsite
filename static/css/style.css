@@ -1,0 +1,206 @@
+/* 'A Leaf' CSS - http://gregdev.net */
+
+body {
+	font-size: 10pt;
+	font-family: Tahoma, sans-serif;
+	color: #000;
+	background: #f4f5f0;
+	text-align: center;
+}
+
+/* content wrapper */
+
+#wrap {
+	color: #303030;
+	margin: 0 auto;
+	width: 750px;
+	background: #d9ebc3 url('../images/bg.jpg') no-repeat;
+	text-align: left;
+}
+
+/* title */
+
+#title {
+	padding-top: 20px;
+	margin-left: 20px;
+	text-align: left;
+	color: #5e8fbd;427bb0
+	height: 100px;
+}
+#title h1 {
+	font-size: 60pt;
+	font-weight: normal;
+	margin: 0;
+}
+#title a, a :visited {
+	color: #5e8fbd;
+	text-decoration: none;
+}
+
+#title a:hover, a:visited:hover {
+	color: #427bb0;
+	text-decoration: none;
+}
+
+/* main content */
+
+#content {
+	margin: 10px 0 0 5px;
+	padding: 10px;
+	line-height: 1.8em;
+	width: 600px;
+	color: #222;
+	min-height: 350px;
+	float: left;
+}
+
+h1 {
+	font-size: 2em;
+	color: #cd6918;
+}
+h2 {
+	font-size: 1.4em;
+	color: #cd6918;
+}
+
+.quote {
+	color: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	background: #b3d686;
+	width: 500px;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+/* side menu */
+
+#side {
+	margin: 20px 0 10px 0;
+	line-height: 1.8em;
+	width: 105px;
+	color: #000000;
+	float: right;
+	text-align: right;
+	float: left;
+}
+
+#side ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.item {
+	color: #000;
+	display: block;
+	background: #a6cca1;
+	border: blue 1px solid;
+	margin: 10px 5px 5px 5px;
+	padding-right: 2px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	width: 110px;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.item:hover {
+	background: #f0b600;
+	color: #000;
+	text-decoration: none;
+}
+
+.itemsub {
+	color: #000;
+	font-size: 0.8em;
+	display: block;
+	background: #a6da87;
+	border: blue 1px solid;
+	margin: 5px 5px 0px 15px;
+	padding-right: 2px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	width: 100px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.itemsub:hover {
+	background: #f0d307;
+	color: #000;
+	text-decoration: none;
+}
+
+/* image footer */
+
+#footer {
+	background: url('../images/foot.gif');
+	width: 750px;
+	height: 23px;
+}
+
+.clear {
+	clear: both;
+	margin: 0;
+	padding: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+/* bottom stuff (copyright message, etc) */
+
+#bottom {
+	font-size: 8pt;
+	padding: 15px;
+	color: #595d8e;
+	line-height: 0.5em;
+	text-align: center;
+}
+
+#bottom a {
+	color: #595d8e;
+	text-decoration: underline;
+}
+
+#bottom a:hover {
+	text-decoration: none;
+}
+
+#bottom img {
+	margin: 5px;
+	border: 0;
+}
+
+/* hyperlinks */
+
+a {
+	text-decoration: underline;
+	color: #1267bc;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #d96b12;
+}
+
+/* tables */
+
+table {
+	border: 1px solid blue;
+	text-align: left;
+	font-size: 1em;
+}
+
+td {
+	border: 1px solid blue;
+	padding: 0;
+}
+
+/* input */
+
+input {
+	border: 1px solid #f0b600;
+	background: #a6da87;
+}
