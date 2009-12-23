@@ -3,7 +3,6 @@
 if request.env.web2py_runtime_gae:            
     db = DAL('gae')                          
     session.connect(request, response, db=db)
-
 else:                                         
     db = DAL('sqlite://storage.sqlite')     
 
@@ -20,9 +19,9 @@ mail.settings.server='smtp.gmail.com:587'
 mail.settings.sender='aspersieman@gmail.com' 
 mail.settings.login='aspersieman:H0ndt44s'
 auth.settings.mailer=mail 
-auth.settings.registration_requires_verification = True
-auth.settings.registration_requires_approval = True
-auth.messages.verify_email = 'Click on the link http://.../user/verify_email/%(key)s to verify your email'
+#auth.settings.registration_requires_verification = True
+#auth.settings.registration_requires_approval = True
+#auth.messages.verify_email = 'Click on the link http://.../user/verify_email/%(key)s to verify your email'
 
 db.define_table('post',
     Field('user', db.auth_user, readable=False, writable=False),
@@ -51,13 +50,27 @@ db.define_table('comment',
     Field('dateline', 'datetime', default=request.now, readable=False, writable=False)
 )
 
-db.define_table('category',
-    Field('title')
+db.define_table('categories',
+    Field('title', requires = IS_NOT_EMPTY(error_message = "Enter a title."))
 )
 
 db.define_table('relations',
     Field('post', db.post),
-    Field('category', db.category),
+    Field('category', db.categories),
     Field('tag'),
     Field('relationtype')
 )
+
+# Initial setup
+admingroup = db(db.auth_group.role == "Admin").select()
+if admingroup:
+    admin = db(db.auth_user.email == "aspersieman@gmail.com").select()
+    if admin:
+        auth.add_membership(admingroup[0].id, admin[0].id)
+        auth.add_permission(admingroup[0].id, 'create', 'categories')
+else:
+    admingroup_id = auth.add_group(role = "Admin", description = "Administrator group.")
+    admin = db(db.auth_user.email == "aspersieman@gmail.com").select()
+    if admin:
+        auth.add_membership(admingroup_id, admin[0].id)
+        auth.add_permission(admingroup_id, 'create', 'categories')

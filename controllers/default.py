@@ -9,7 +9,7 @@
 #########################################################################  
 
 def index():
-    posts = db(db.post.private == False).select(orderby=~db.post.id)
+    posts = db(db.post.private == False).select(orderby=~db.post.dateline)
     return dict(posts=posts)
 
 def user():

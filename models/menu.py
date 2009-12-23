@@ -41,7 +41,8 @@ if 'auth' in globals():
                 [
                     ['New Post', False, URL(request.application, 'posts', 'new')],
                     ['Manage Posts', False, URL(request.application, 'posts', 'manageposts')],
-                    ['Manage Files', False, URL(request.application, 'posts', 'managefiles')]
+                    ['Manage Files', False, URL(request.application, 'posts', 'managefiles')],
+                    ['Manage Categories', False, URL(request.application, 'posts', 'data/create/categories')]
                 ],
             ],
         ]
