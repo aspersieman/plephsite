@@ -103,7 +103,7 @@ h2 {
 	width: 110px;
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 0.9em;
+	font-size: 0.8em;
 }
 
 .item:hover {
@@ -114,7 +114,7 @@ h2 {
 
 .itemsub {
 	color: #000;
-	font-size: 0.8em;
+	font-size: 0.7em;
 	display: block;
 	background: #a6da87;
 	border: blue 1px solid;
@@ -193,14 +193,70 @@ table {
 	font-size: 1em;
 }
 
+/*
 td {
 	border: 1px solid blue;
 	padding: 0;
 }
+*/
 
 /* input */
 
-input {
+input,textarea {
 	border: 1px solid #f0b600;
 	background: #a6da87;
+}
+
+input:focus,
+textarea:focus {
+	background: #AAFFCC;
+}
+
+button {
+    background: #FFFFFF;
+}
+
+div.maincontent {
+	border: 1px solid blue;
+	text-align: left;
+	font-size: 1em;
+	padding-left: 2px;
+}
+
+div.subinfo {
+	color: #000;
+	background: #a6cca1;
+	margin: 1px 1px 1px 1px;
+	padding-right: 2px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+div.commentheading {
+	color: #000;
+	background: #a6cca1;
+	margin: 1px 1px 1px 1px;
+	padding-right: 2px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+div.commentbody {
+	text-align: left;
+	font-size: 1em;
+	padding-left: 10px;
+}
+
+pre {
+	white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+	white-space: -pre-wrap; /* Opera 4 - 6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+	word-wrap: break-word; /* IE 5.5+ */
 }

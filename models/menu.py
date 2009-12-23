@@ -5,7 +5,7 @@
 #########################################################################
 
 response.title = request.application
-response.subtitle = T('customize me!')
+response.subtitle = T('Llamas, eels and destruction...')
 
 ##########################################
 ## this is the authentication menu
@@ -25,16 +25,26 @@ if 'auth' in globals():
            ]
     else:
         response.menu_auth = [
-            ['User: '+auth.user.first_name,False,None,
+            ['Hi ' + auth.user.first_name + '!', False,None,
              [
                     [T('Logout'), False, 
                      URL(request.application,'default','user/logout')],
-                    [T('Edit Profile'), False, 
+                    [T('Profile'), False, 
                      URL(request.application,'default','user/profile')],
-                    [T('Change Password'), False,
+                    [T('Password'), False,
                      URL(request.application,'default','user/change_password')]]
              ],
             ]
+    if auth.has_membership(auth.id_group("Admin")):
+        response.menu_post = [
+            ['Posts', False, URL(request.application, 'default', 'index'),
+                [
+                    ['New Post', False, URL(request.application, 'posts', 'new')],
+                    ['Manage Posts', False, URL(request.application, 'posts', 'manageposts')],
+                    ['Manage Files', False, URL(request.application, 'posts', 'managefiles')]
+                ],
+            ],
+        ]
 
 ##########################################
 ## this is the main application menu

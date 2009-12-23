@@ -1,6 +1,10 @@
 {{extend 'layout.html'}}
 
-{{try:}}{{=H2(message)}}{{except:}}{{=BEAUTIFY(response._vars)}}{{pass}}
-
-{{=P(A(T("click here for the administrative interface"), _href=URL('admin','default','index')),_style="padding-top:1em;")}}
-{{=P(A(T("click here for online examples"), _href=URL('examples','default','index')))}}
+{{ for post in posts: }}
+<div class="maincontent">
+	<div style="font-size: 22px;"><a href="/{{=request.application}}/posts/view/{{= post.id }}">{{= post.title }}</a></div>
+	<div class="subinfo" style="font-size: 8px;">Posted by {{=post.username}} on {{=post.dateline}}</div><br/> 
+    <div>{{= post.body }}</div>
+</div>
+<br/>
+{{ pass }}
