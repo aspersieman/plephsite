@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+
+{{if image:}}
+	{{if len(image):}}
+	<div class=maincontent">
+		<div>{{=image.title}}</div>
+		<img width="100px" src = "{{=URL(r = request, f = 'download', args = image.filename)}}"/>
+	</div>
+	{{pass}}
+{{pass}}

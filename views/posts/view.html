@@ -1,0 +1,69 @@
+{{extend 'layout.html'}}
+{{ import gluon.contrib.markdown }}
+<div class="maincontent">
+	{{if post:}}
+	<h1>{{= post.title }}</h1>
+	<div class="subinfo">
+		<div ="font-size: 8pt">Posted by {{=post.username}} on {{=post.addeddate}}</div>
+	</div>
+
+	<div class="mainbody">
+		<br/>
+		<div>{{= gluon.contrib.markdown.WIKI(post.body) }}</div>
+
+		{{ if categories: }}
+			<br/>
+			<div class="subinfo">
+			{{ categorycounter = 1 }}
+				<div>Categories
+				{{ for category in categories: }}
+				<a href="/{{=request.application}}/categories/view/{{= category }}">{{= categories[category] }}</a>{{ if categorycounter != len(categories): }}, {{ else: }}. {{ pass }}
+				{{ categorycounter = categorycounter + 1 }}
+				{{ pass }}
+				</div>
+			</div>
+			<br/>
+		{{ pass }}
+
+		{{ if tags: }}
+			<div class="subinfo">
+			{{ tagcounter = 1 }}
+				<div>Tags: 
+				{{ for tag in tags: }}
+					{{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }}. {{ pass }}
+				{{ tagcounter = tagcounter + 1 }}
+				{{ pass }}
+				</div>
+			</div>
+		{{ pass }}
+	</div>
+{{else:}}
+Post not found
+{{pass}}
+</div>
+
+{{if post:}}
+<h1>Comments</h1>
+{{ if comments: }}
+	{{ for comment in comments: }}
+	<div class="maincontent">
+		<div class="commentheading">
+			<p style="font-size: 9px;">Posted by {{= comment.name}} on {{= comment.addeddate }}</p>
+		</div>
+		<div class="commentbody">
+			{{= gluon.contrib.markdown.WIKI(comment.commentbody) }}
+		</div>
+	</div>
+	<br/>
+	{{ pass }}
+{{ else: }}
+	<div>No comments made for this post.</div>
+{{ pass }}
+
+<h1>Have Your Say</h1>
+{{if auth.is_logged_in():}}
+	{{= commentform }}
+{{else:}}
+Please log in to comment.
+{{pass}}
+

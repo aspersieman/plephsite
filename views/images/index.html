@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+
+<h1>Manage images</h1>
+
+<h2>Add an image</h2>
+{{=form}}
+
+<br/>
+<h2>Images</h2>
+{{ if len(images) > 0:}}
+<div class="maincontent">
+	<ul>
+		{{ for image in images: }}
+		{{=LI(A(image.title.decode("latin1"), _href = URL(r = request, f = "view", args = image.id)), " - [", str(image.addeddate), "]")}}
+		{{pass}}
+	</ul>
+</div>
+{{else:}}
+No images yet. Please upload an image.
+{{pass}}

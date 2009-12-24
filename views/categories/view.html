@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+<h1>Entries Posted Under "{{= category.title }}"</h1>
+
+{{if categoryposts:}}
+	{{ if len(categoryposts) > 0:}}
+		{{ for categorypost in categoryposts: }}
+			<div class="maincontent">
+				<a href="/{{=request.application}}/posts/view/{{= categorypost.id }}">{{= posttitles[categorypost.post] }}</a>
+				<div class="subinfo">
+					{{=postinfo[categorypost.post]}}
+				</div>
+			</div>
+			<br/>
+		{{ pass }}
+	{{else:}}
+	There are no posts under this category.
+	{{ pass }}
+{{else:}}
+There are no posts under this category.
+{{ pass }}
