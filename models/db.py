@@ -29,7 +29,7 @@ db.define_table('post',
     Field('private', "boolean", default = False),
     Field('title'),
     Field('body', 'text'),
-    Field('dateline', 'datetime', default=request.now, readable=False, writable=False),
+    Field('addeddate', 'datetime', default=request.now, readable=False, writable=False),
     Field('file', 'upload')
 )
 
@@ -47,19 +47,30 @@ db.define_table('comment',
     Field('name', requires=IS_NOT_EMPTY(error_message="Please enter your name.")),
     Field('email'),
     Field('commentbody', 'text', requires=IS_NOT_EMPTY(error_message="Please enter your comment.")),
-    Field('dateline', 'datetime', default=request.now, readable=False, writable=False)
+    Field('addeddate', 'datetime', default=request.now, readable=False, writable=False)
 )
 
 db.define_table('categories',
     Field('title', requires = IS_NOT_EMPTY(error_message = "Enter a title."))
 )
 
+db.categories.title.requires = IS_NOT_IN_DB(db, db.categories.title)
+
 db.define_table('relations',
     Field('post', db.post),
     Field('category', db.categories),
+    Field('categorytitle'),
     Field('tag'),
     Field('relationtype')
 )
+
+db.define_table("images",
+    Field("title"),
+    Field("filename", "upload"),
+    Field('addeddate', 'datetime', default=request.now, readable=False, writable=False)
+)
+
+db.images.title.requires = [IS_NOT_EMPTY(), IS_NOT_IN_DB(db, db.images.title)]
 
 # Initial setup
 admingroup = db(db.auth_group.role == "Admin").select()
@@ -68,9 +79,11 @@ if admingroup:
     if admin:
         auth.add_membership(admingroup[0].id, admin[0].id)
         auth.add_permission(admingroup[0].id, 'create', 'categories')
+        auth.add_permission(admingroup[0].id, 'create', 'images')
 else:
     admingroup_id = auth.add_group(role = "Admin", description = "Administrator group.")
     admin = db(db.auth_user.email == "aspersieman@gmail.com").select()
     if admin:
         auth.add_membership(admingroup_id, admin[0].id)
         auth.add_permission(admingroup_id, 'create', 'categories')
+        auth.add_permission(admingroup_id, 'create', 'images')

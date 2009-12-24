@@ -1,16 +1,7 @@
 # coding: utf8
 
-#########################################################################
-## Customize your APP title, subtitle and menus here
-#########################################################################
-
 response.title = request.application
 response.subtitle = T('Llamas, eels and destruction...')
-
-##########################################
-## this is the authentication menu
-## remove if not necessary
-##########################################
 
 if 'auth' in globals():
     if not auth.is_logged_in():
@@ -41,16 +32,12 @@ if 'auth' in globals():
                 [
                     ['New Post', False, URL(request.application, 'posts', 'new')],
                     ['Manage Posts', False, URL(request.application, 'posts', 'manageposts')],
-                    ['Manage Files', False, URL(request.application, 'posts', 'managefiles')],
-                    ['Manage Categories', False, URL(request.application, 'posts', 'data/create/categories')]
+                    ['Manage Images', False, URL(request.application, 'images', 'index')],
+                    ['Manage Categories', False, URL(request.application, 'posts', 'data/create/categories')],
+                    ['Manage DB', False, URL(request.application, 'appadmin', "index")]
                 ],
             ],
         ]
-
-##########################################
-## this is the main application menu
-## add/remove items as required
-##########################################
 
 response.menu = [
     [T('Index'), False, 

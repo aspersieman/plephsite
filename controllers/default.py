@@ -1,15 +1,9 @@
 # coding: utf8
 
-#########################################################################
-## This is a samples controller
-## - index is the default action of any application
-## - user is required for authentication and authorization
-## - download is for downloading files uploaded in the db (does streaming)
-## - call exposes all registered services (none by default)
-#########################################################################  
+response.title = "Pleph"
 
 def index():
-    posts = db(db.post.private == False).select(orderby=~db.post.dateline)
+    posts = db(db.post.private == False).select(orderby=~db.post.addeddate)
     return dict(posts=posts)
 
 def user():
