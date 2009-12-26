@@ -1,6 +1,7 @@
 # coding: utf8
 
 response.title = "Pleph"
+response.subtitle = "Llamas, Eels, Meese...glorious"
 
 def data():
     form = crud()
