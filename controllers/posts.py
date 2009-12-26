@@ -14,7 +14,16 @@ def new():
     categorylist = db(db.categories.id > 0).select()
     for category in categorylist:
         postform[0].append(XML(str(INPUT(_type="checkbox", _name="category", _value=category.id))+category.title))
-    postform[0].append(DIV("Tags:", INPUT(_type="textbox", _name="tags", _size="50")))
+    postform[0].append(
+        DIV(
+            "Tags:", 
+            INPUT(_type="textbox", _name="tags", _size="50")
+        )
+    )
+    postform[0].append(
+        DIV(
+            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('post_preview', ['post_body'], 'preview')"))
+    )
     if postform.accepts(request.vars, session):
         if 'category' in request.vars:
             if isinstance(request.vars.category, list):
@@ -104,12 +113,6 @@ def deleteposts():
         db(db.relations.post == int(postid)).delete()
     redirect(URL(r=request, f="manageposts"))
 
-def feed():
-    return dict(title="my feed",
-                link="http://feed.example.com", 
-                description="my first feed",
-                items=[
-                  dict(title="my feed",
-                       link="http://feed.example.com", 
-                       description="my first feed")
-                ])
+@auth.requires_membership('Admin')
+def post_preview():
+    return WIKI(request.vars.text).xml()

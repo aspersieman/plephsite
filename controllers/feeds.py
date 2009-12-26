@@ -2,7 +2,7 @@
 
 @service.rss
 def posts():
-    posts = db(db.post.id > 0).select(limitby = (0, 10), orderby =~ db.post.addeddate)
+    posts = db(db.post.private == False).select(limitby = (0, 10), orderby =~ db.post.addeddate)
     urlbase = request.env.wsgi_url_scheme + "://" + request.env.http_host
     items = []
     for post in posts:
