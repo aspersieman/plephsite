@@ -72,6 +72,9 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 				-->
 			</div>
 			<div id="side">
+				{{if request.controller == "posts" or request.controller == "default":}}
+					{{=LOAD('panels','feed_posts', ajax = True)}}
+				{{pass}}
 				{{if response.menu_auth:}}
 				<ul>
 					<li>

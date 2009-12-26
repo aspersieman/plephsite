@@ -102,3 +102,13 @@ def deleteposts():
         db(db.comment.post == int(postid)).delete()
         db(db.relations.post == int(postid)).delete()
     redirect(URL(r=request, f="manageposts"))
+
+def feed():
+    return dict(title="my feed",
+                link="http://feed.example.com", 
+                description="my first feed",
+                items=[
+                  dict(title="my feed",
+                       link="http://feed.example.com", 
+                       description="my first feed")
+                ])

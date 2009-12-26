@@ -3,8 +3,10 @@
 {{if image:}}
 	{{if len(image):}}
 	<div class=maincontent">
-		<div>{{=image.title}}</div>
+		<div class="subinfo">Image title : {{=image.title}}</div>
 		<img width="100px" src = "{{=URL(r = request, f = 'download', args = image.filename)}}"/>
+		<div class="subinfo">Image filename : {{=image.filename}}</div>
 	</div>
+	<br/>
 	{{pass}}
 {{pass}}

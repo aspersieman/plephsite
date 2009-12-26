@@ -8,7 +8,7 @@ else:
 
 from gluon.tools import *
 auth=Auth(globals(),db)                    
-auth.settings.hmac_key='sha512:2c209fe2-5c5a-4400-a98a-4e4d4cf04c9c'
+auth.settings.hmac_key = 'sha512:2c209fe2-5c5a-4400-a98a-4e4d4cf04c9c'
 auth.define_tables()                         
 crud=Crud(globals(),db)                    
 service=Service(globals())                   
@@ -73,17 +73,20 @@ db.define_table("images",
 db.images.title.requires = [IS_NOT_EMPTY(), IS_NOT_IN_DB(db, db.images.title)]
 
 # Initial setup
-admingroup = db(db.auth_group.role == "Admin").select()
-if admingroup:
-    admin = db(db.auth_user.email == "aspersieman@gmail.com").select()
-    if admin:
-        auth.add_membership(admingroup[0].id, admin[0].id)
-        auth.add_permission(admingroup[0].id, 'create', 'categories')
-        auth.add_permission(admingroup[0].id, 'create', 'images')
-else:
-    admingroup_id = auth.add_group(role = "Admin", description = "Administrator group.")
-    admin = db(db.auth_user.email == "aspersieman@gmail.com").select()
-    if admin:
+admin = db(db.auth_user.email == "aspersieman@gmail.com").select()
+if admin:
+    admingroup = db(db.auth_group.role == "Admin").select()
+    if not admingroup:
+        admingroup_id = auth.add_group(role = "Admin", description = "Administrator group.")
+    else:
+        admingroup_id = admingroup[0].id
+
+    admingroup_membership = db((db.auth_membership.user_id == admin[0].id)&(db.auth_membership.group_id == admingroup_id)).select()
+    if not admingroup_membership:
         auth.add_membership(admingroup_id, admin[0].id)
+    adminpermission_categories = db((db.auth_permission.group_id == admingroup_id)&(db.auth_permission.table_name == "categories")).select(db.auth_permission.id)
+    if not adminpermission_categories:
         auth.add_permission(admingroup_id, 'create', 'categories')
+    adminpermission_images = db((db.auth_permission.group_id == admingroup_id)&(db.auth_permission.table_name == "images")).select(db.auth_permission.id)
+    if not adminpermission_images:
         auth.add_permission(admingroup_id, 'create', 'images')

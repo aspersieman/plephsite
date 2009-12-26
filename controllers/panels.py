@@ -10,3 +10,8 @@ def categories():
     else:
         form = XML("<div></div>")
     return form
+
+def feed_posts():
+    post_feed_link = "<img src='/" + request.application + "/static/images/feed-icon-small.png' /><a href='/" + request.application + "/feeds/posts.rss'> Blog</a> " 
+    form = XML("<div class='sidepanelheading'>Feeds</div><div class='sidepanel'>" + post_feed_link + "</div>")
+    return form

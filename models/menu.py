@@ -5,7 +5,8 @@ response.subtitle = T('Llamas, eels and destruction...')
 
 if 'auth' in globals():
     if not auth.is_logged_in():
-       response.menu_auth = [
+        """
+        response.menu_auth = [
            [T('Login'), False, auth.settings.login_url,
             [
                    [T('Register'), False,
@@ -14,16 +15,22 @@ if 'auth' in globals():
                     URL(request.application,'default','user/retrieve_password')]]
             ],
            ]
+        """
+        response.menu_auth = [
+            [T('Login'), False, auth.settings.login_url,
+             [],
+            ]
+        ]
     else:
         response.menu_auth = [
             ['Hi ' + auth.user.first_name + '!', False,None,
              [
-                    [T('Logout'), False, 
-                     URL(request.application,'default','user/logout')],
-                    [T('Profile'), False, 
-                     URL(request.application,'default','user/profile')],
-                    [T('Password'), False,
-                     URL(request.application,'default','user/change_password')]]
+                 [T('Logout'), False,
+                  URL(request.application,'default','user/logout')],
+                 [T('Profile'), False,
+                  URL(request.application,'default','user/profile')],
+                 [T('Password'), False,
+                  URL(request.application,'default','user/change_password')]]
              ],
             ]
     if auth.has_membership(auth.id_group("Admin")):
@@ -43,12 +50,6 @@ response.menu = [
     [T('Index'), False, 
      URL(request.application,'default','index'), []],
     ]
-
-
-##########################################
-## this is here to provide shortcuts
-## during development. remove in production 
-##########################################
 
 response.menu_edit=[
   [T('Edit'), False, URL('admin', 'default', 'design/%s' % request.application),
