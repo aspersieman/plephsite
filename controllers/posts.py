@@ -3,7 +3,7 @@
 from gluon.contrib.markdown import WIKI
 
 response.title = "Pleph"
-response.subtitle = "Llamas, Eels, Meese...glorious"
+response.subtitle = "Exuding awesomage - NOW WITH MORE LLAMAS!"
 
 def data():
     form = crud()
@@ -43,7 +43,7 @@ def new():
 
 @auth.requires_membership('Admin')
 def edit():
-    postid = request.args(0)
+    postid = int(request.args(0))
     post = db(db.post.id == postid).select()[0]
     relations = db(db.relations.post == postid).select() #post.relations.select()
     postcategories = [int(relation.category) for relation in relations if relation.relationtype == 'category']
@@ -53,6 +53,10 @@ def edit():
     for category in categorylist:
         checked = "on" if int(category.id) in postcategories else ""
         editform[0].append(XML(str(INPUT(_type="checkbox", _name="category", _value=category.id, value=checked))+category.title))
+    editform[0].append(
+        DIV(
+            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('post_preview', ['post_body'], 'preview')"))
+    )
     editform[0].append(DIV(XML("<strong>Tags:</strong>"), INPUT(_type="textbox", _name="tags", _size="50", _value=", ".join(posttags), _style="margin-left: 100px;")))
     if editform.accepts(request.vars, session):
         if 'category' in request.vars:

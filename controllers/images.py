@@ -1,6 +1,7 @@
 # coding: utf8
 
 response.title = "Pleph"
+response.subtitle = "Exuding awesomage - NOW WITH MORE LLAMAS!"
 
 def download():
     return response.download(request, db)
