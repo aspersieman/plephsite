@@ -7,9 +7,11 @@ else:
     db = DAL("sqlite://storage.sqlite")     
 
 from gluon.tools import *
+
 auth = Auth(globals(),db)                    
 auth.settings.hmac_key = "sha512:2c209fe2-5c5a-4400-a98a-4e4d4cf04c9c"
 auth.define_tables()                         
+auth.settings.captcha = Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "Not good")
 crud = Crud(globals(),db)                    
 service = Service(globals())                   
 

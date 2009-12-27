@@ -1,5 +1,7 @@
 # coding: utf8
 
+from gluon.contrib.markdown import WIKI
+
 response.title = "Pleph"
 response.subtitle = "Llamas, Eels, Meese...glorious"
 
@@ -87,6 +89,7 @@ def view():
         db.comment.post.default = postid
         if auth.is_logged_in():
             commentform = SQLFORM(db.comment)
+            commentform[0].insert(-1, TR('',  Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "Not good")))
         else:
             commentform = FORM()
         if commentform.accepts(request.vars, session):
@@ -115,4 +118,4 @@ def deleteposts():
 
 @auth.requires_membership('Admin')
 def post_preview():
-    return WIKI(request.vars.text).xml()
+    return WIKI(request.vars.post_body).xml()
