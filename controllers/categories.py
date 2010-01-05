@@ -17,4 +17,4 @@ def view():
     relationlist = []
     for relation in relations:
         relationlist.append(relation.id)
-    return dict(categoryposts=categoryposts, category=category, posttitles = posttitles, postinfo = postinfo)
+    return dict(categoryposts = categoryposts, category = category, posttitles = posttitles, postinfo = postinfo)

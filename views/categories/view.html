@@ -5,7 +5,7 @@
 	{{ if len(categoryposts) > 0:}}
 		{{ for categorypost in categoryposts: }}
 			<div class="maincontent">
-				<a href="/{{=request.application}}/posts/view/{{= categorypost.id }}">{{= posttitles[categorypost.post] }}</a>
+				<a href="/{{=request.application}}/posts/view/{{= categorypost.post }}">{{= posttitles[categorypost.post] }}</a>
 				<div class="subinfo">
 					{{=postinfo[categorypost.post]}}
 				</div>

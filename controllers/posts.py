@@ -55,7 +55,7 @@ def edit():
         editform[0].append(XML(str(INPUT(_type="checkbox", _name="category", _value=category.id, value=checked))+category.title))
     editform[0].append(
         DIV(
-            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('post_preview', ['post_body'], 'preview')"))
+            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('/init/posts/post_preview', ['post_body'], 'preview')"))
     )
     editform[0].append(DIV(XML("<strong>Tags:</strong>"), INPUT(_type="textbox", _name="tags", _size="50", _value=", ".join(posttags), _style="margin-left: 100px;")))
     if editform.accepts(request.vars, session):
@@ -93,7 +93,7 @@ def view():
         db.comment.post.default = postid
         if auth.is_logged_in():
             commentform = SQLFORM(db.comment)
-            commentform[0].insert(-1, TR('',  Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "Not good")))
+            commentform[0].insert(-1, TR('',  Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "The text entered does not match.")))
         else:
             commentform = FORM()
         if commentform.accepts(request.vars, session):
