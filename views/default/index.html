@@ -3,8 +3,8 @@
 
 {{ for post in posts: }}
 <div class="maincontent">
-	<div style="font-size: 22px;"><a href="/{{=request.application}}/posts/view/{{= post.id }}">{{= post.title }}</a></div>
-	<div class="subinfo" style="font-size: 8px;">Posted by {{=post.username}} on {{=post.addeddate}}</div><br/> 
+	<div><h1><a href="/{{=request.application}}/posts/view/{{= post.id }}">{{= post.title }}</a></h1></div>
+	<div class="subinfo" style="font-size: 8pt">Posted by {{=post.username}} on {{=post.addeddate}}</div><br/> 
     <div>{{= XML(gluon.contrib.markdown.WIKI(post.body)) }}</div>
 </div>
 <br/>

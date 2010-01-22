@@ -89,7 +89,7 @@ def view():
         relations = db(db.relations.post == postid).select()
         categories = dict((relation.category.id, relation.categorytitle) for relation in relations if relation.relationtype == 'category')
         tags = [relation.tag for relation in relations if relation.relationtype == 'tag']
-        comments = db(db.comment.post == postid).select()
+        comments = db(db.comment.post == postid).select(orderby =~ db.comment.addeddate)
         db.comment.post.default = postid
         if auth.is_logged_in():
             commentform = SQLFORM(db.comment)

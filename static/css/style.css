@@ -2,7 +2,7 @@
 
 body {
 	font-size: 10pt;
-	font-family: Tahoma, sans-serif;
+	font-family: Monaco, monospace;
 	color: #000;
 	background: #f4f5f0;
 	text-align: center;
@@ -20,11 +20,12 @@ body {
 
 /* title */
 
+/* color: #5e8fbd;427bb0 */
 #title {
 	padding-top: 20px;
 	margin-left: 20px;
 	text-align: left;
-	color: #5e8fbd;427bb0
+	color: #CC6300;427bb0
 	height: 100px;
 }
 #title h1 {
@@ -33,7 +34,7 @@ body {
 	margin: 0;
 }
 #title a, a :visited {
-	color: #5e8fbd;
+	color: #CC6300;
 	text-decoration: none;
 }
 
@@ -56,8 +57,9 @@ body {
 
 h1 {
 	font-size: 2em;
-	color: #cd6918;
+	color: #CC6600;
 }
+
 h2 {
 	font-size: 1.4em;
 	color: #cd6918;
@@ -95,7 +97,7 @@ h2 {
 	color: #000;
 	display: block;
 	background: #a6cca1;
-	border: blue 1px solid;
+	border: blue 2px solid;
 	margin: 10px 5px 5px 5px;
 	padding-right: 2px;
 	opacity: 0.5;
@@ -275,7 +277,7 @@ div.sidepanelheading {
 	color: #000;
 	display: block;
 	background: #a6cca1;
-	border: blue 1px solid;
+	border: blue 2px solid;
 	margin: 10px 5px 5px 5px;
 	padding-right: 2px;
 	opacity: 0.5;
