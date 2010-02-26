@@ -2,7 +2,8 @@
 
 body {
 	font-size: 10pt;
-	font-family: Monaco, monospace;
+	/* font-family: Monaco, monospace; */
+	font-family: Verdana, monospace;
 	color: #000;
 	background: #f4f5f0;
 	text-align: center;
@@ -80,7 +81,7 @@ h2 {
 #side {
 	margin: 20px 0 10px 0;
 	line-height: 1.8em;
-	width: 105px;
+	width: 125px;
 	color: #000000;
 	float: right;
 	text-align: right;

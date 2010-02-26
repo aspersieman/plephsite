@@ -83,8 +83,13 @@ def edit():
 
 def view():
     postid = request.args(0)
-    post = db((db.post.id == postid)&(db.post.private == False)).select()
-    if len(post) > 0:
+    post = db((db.post.id == postid)).select()
+    bpost_is_valid = True
+    if len(post) == 0:
+        bpost_is_valid = False
+    elif post[0].private == True:
+        bpost_is_valid = False
+    if bpost_is_valid:
         post = post[0]
         relations = db(db.relations.post == postid).select()
         categories = dict((relation.category.id, relation.categorytitle) for relation in relations if relation.relationtype == 'category')
@@ -109,16 +114,21 @@ def view():
 
 @auth.requires_membership('Admin')
 def manageposts():
+    if not request.vars.delete is None:
+        deleteposts(request.vars.delete)
+        redirect(URL(r=request, f="manageposts"))
     posts = db(db.post.id > 0).select()
     return dict(posts=posts)
 
 @auth.requires_membership('Admin')
-def deleteposts():
-    for postid in request.vars.delete:
-        db(db.post.id == int(postid)).delete()
-        db(db.comment.post == int(postid)).delete()
-        db(db.relations.post == int(postid)).delete()
-    redirect(URL(r=request, f="manageposts"))
+def deleteposts(posts_delete = None):
+    if isinstance(posts_delete, str):
+        posts_delete = [posts_delete]
+    for postid in posts_delete:
+        if postid > 0:
+            db(db.post.id == int(postid)).delete()
+            db(db.comment.post == int(postid)).delete()
+            db(db.relations.post == int(postid)).delete()
 
 @auth.requires_membership('Admin')
 def post_preview():
