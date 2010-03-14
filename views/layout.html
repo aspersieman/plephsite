@@ -8,6 +8,7 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 		<title>
 			{{=response.title or request.application}}
 		</title>
+		<link rel="shortcut icon" href="/init/static/images/favicon.ico">
 		{{response.files.append(URL(request.application,'static/css','style.css'))}}
 		{{include 'web2py_ajax.html'}}
 		<style>
