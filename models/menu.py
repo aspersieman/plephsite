@@ -45,35 +45,10 @@ if 'auth' in globals():
                 ],
             ],
         ]
-
-response.menu = [
-    [T('Index'), False, 
-     URL(request.application,'default','index'), []],
-    ]
-
-response.menu_edit=[
-  [T('Edit'), False, URL('admin', 'default', 'design/%s' % request.application),
-   [
-            [T('Controller'), False, 
-             URL('admin', 'default', 'edit/%s/controllers/default.py' \
-                     % request.application)],
-            [T('View'), False, 
-             URL('admin', 'default', 'edit/%s/views/%s' \
-                     % (request.application,response.view))],
-            [T('Layout'), False, 
-             URL('admin', 'default', 'edit/%s/views/layout.html' \
-                     % request.application)],
-            [T('Stylesheet'), False, 
-             URL('admin', 'default', 'edit/%s/static/base.css' \
-                     % request.application)],
-            [T('DB Model'), False, 
-             URL('admin', 'default', 'edit/%s/models/db.py' \
-                     % request.application)],
-            [T('Menu Model'), False, 
-             URL('admin', 'default', 'edit/%s/models/menu.py' \
-                     % request.application)],
-            [T('Database'), False, 
-             URL(request.application, 'appadmin', 'index')],
-            ]
-   ],
-  ]
+    else:
+        response.menu_post = [
+            ['Posts', False, URL(request.application, 'default', 'index'),
+                [
+                ],
+            ],
+        ]

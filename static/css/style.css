@@ -50,7 +50,7 @@ body {
 	margin: 10px 0 0 5px;
 	padding: 10px;
 	line-height: 1.8em;
-	width: 600px;
+	width: 550px;
 	color: #222;
 	min-height: 350px;
 	float: left;
@@ -81,7 +81,7 @@ h2 {
 #side {
 	margin: 20px 0 10px 0;
 	line-height: 1.8em;
-	width: 125px;
+	width: 175px;
 	color: #000000;
 	float: right;
 	text-align: right;
@@ -99,11 +99,11 @@ h2 {
 	display: block;
 	background: #a6cca1;
 	border: blue 2px solid;
-	margin: 10px 5px 5px 5px;
+	margin: 10px 5px 5px 10px;
 	padding-right: 2px;
 	opacity: 0.5;
 	filter: alpha(opacity=50);
-	width: 110px;
+	width: 150px;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 0.8em;
@@ -123,11 +123,11 @@ h2 {
 	display: block;
 	background: #a6da87;
 	border: blue 1px solid;
-	margin: 5px 5px 0px 15px;
+	margin: 3px 5px 0px 30px;
 	padding-right: 2px;
 	opacity: 0.5;
 	filter: alpha(opacity=50);
-	width: 100px;
+	width: 130px;
 	text-decoration: none;
 	font-weight: bold;
 	-moz-border-radius: 3px;
@@ -279,11 +279,11 @@ div.sidepanelheading {
 	display: block;
 	background: #a6cca1;
 	border: blue 2px solid;
-	margin: 10px 5px 5px 5px;
+	margin: 10px 5px 5px 10px;
 	padding-right: 2px;
 	opacity: 0.5;
 	filter: alpha(opacity=50);
-	width: 110px;
+	width: 150px;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 0.8em;
@@ -303,11 +303,11 @@ div.sidepanel {
 	display: block;
 	background: #a6da87;
 	border: blue 1px solid;
-	margin: 5px 5px 0px 15px;
+	margin: 3px 5px 0px 30px;
 	padding-right: 2px;
 	opacity: 0.5;
 	filter: alpha(opacity=50);
-	width: 100px;
+	width: 130px;
 	text-decoration: none;
 	font-weight: bold;
 	-moz-border-radius: 3px;

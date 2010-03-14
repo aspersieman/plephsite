@@ -49,7 +49,7 @@ Post not found
 			<p style="font-size: 9px;">Posted by {{= comment.name}} on {{= comment.addeddate }}</p>
 		</div>
 		<div class="commentbody">
-			{{= XML(gluon.contrib.markdown.WIKI(comment.commentbody)) }}
+			{{= XML(gluon.contrib.markdown.WIKI(comment.commentbody).xml(), sanitize = True) }}
 		</div>
 	</div>
 	<br/>
