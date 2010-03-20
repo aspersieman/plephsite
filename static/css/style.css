@@ -1,5 +1,4 @@
 /* 'A Leaf' CSS - http://gregdev.net */
-
 body {
 	font-size: 10pt;
 	/* font-family: Monaco, monospace; */
@@ -48,9 +47,9 @@ body {
 
 #content {
 	margin: 10px 0 0 5px;
-	padding: 10px;
+	/* padding: 10px; */
 	line-height: 1.8em;
-	width: 550px;
+	width: 565px;
 	color: #222;
 	min-height: 350px;
 	float: left;
@@ -74,6 +73,46 @@ h2 {
 	width: 500px;
 	margin: 0 auto;
 	padding: 5px;
+}
+
+blockquote p {
+	color: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	background: #b3d686;
+	width: 480px;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+blockquote * { quotes: ''; }
+blockquote > *:before { 
+	content: '\201C'; 
+	float: left;
+	font-size: 300%;
+    color: #336600;
+}
+blockquote > *:after { 
+	content: '\201D'; 
+	float: right;
+	font-size: 300%;
+    color: #336600;
+	margin-top: 0px;
+    padding-top: 20px;
+}
+blockquote q:before { 
+	content: '\2018'; 
+	float: left;
+	font-size: 300%;
+    color: #336600;
+}
+blockquote q:after { 
+	content: '\2019'; 
+	float: right;
+	font-size: 300%;
+    color: #336600;
+	margin-top: 0px;
+    padding-top: 20px;
 }
 
 /* side menu */
