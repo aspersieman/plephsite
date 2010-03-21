@@ -3,7 +3,16 @@
 
 {{ for post in posts: }}
 <div class="maincontent">
-	<div><h1><a href="/{{=request.application}}/posts/view/{{= post.id }}">{{= post.title }}</a></h1></div>
+	<h1 class="sectionheading">
+		<a href="/{{=request.application}}/posts/view/{{= post.id }}">{{= post.title }}</a>
+	</h1>
+	<p class="sectionheadingimage">
+	<a href='/{{=request.application}}/feeds/posts.rss'>
+		<img src='/init/static/images/feed-icon-large.png' />
+	</a>
+	</p>
+	<br/>
+	<br/>
 	<div class="subinfo" style="font-size: 8pt">Posted by {{=post.username}} on {{=post.addeddate}}</div><br/> 
     <div>{{= XML(gluon.contrib.markdown.WIKI(post.body)) }}</div>
 </div>

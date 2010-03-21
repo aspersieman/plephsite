@@ -2,7 +2,16 @@
 {{ import gluon.contrib.markdown }}
 <div class="maincontent">
 	{{if post:}}
-	<h1>{{= post.title }}</h1>
+	<h1 class="sectionheading">
+		{{= post.title }}
+	</h1>
+	<p class="sectionheadingimage">
+	<a href='/{{=request.application}}/feeds/posts.rss'>
+		<img src='/init/static/images/feed-icon-large.png' />
+	</a>
+	</p>
+	<br/>
+	<br/>
 	<div class="subinfo" style="font-size: 8pt">Posted by {{=post.username}} on {{=post.addeddate}}</div>
 
 	<div class="mainbody">
@@ -41,7 +50,7 @@ Post not found
 </div>
 
 {{if post:}}
-<h1>Comments</h1>
+<h2>Comments</h2>
 {{ if comments: }}
 	{{ for comment in comments: }}
 	<div class="maincontent">
@@ -58,7 +67,7 @@ Post not found
 	<div>No comments made for this post.</div>
 {{ pass }}
 
-<h1>Have Your Say</h1>
+<h2>Have Your Say</h2>
 {{if auth.is_logged_in():}}
 	<p>Comments support <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a> syntax.</p>
 	{{= commentform }}

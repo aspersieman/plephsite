@@ -60,9 +60,20 @@ h1 {
 	color: #CC6600;
 }
 
+h1.sectionheading {
+	font-size: 2em;
+	color: #CC6600;
+	float: left;
+	width: 500px;
+}
+
 h2 {
 	font-size: 1.4em;
 	color: #cd6918;
+}
+
+div.sectionheadingimage {
+	float: right;
 }
 
 .quote {
@@ -75,6 +86,7 @@ h2 {
 	padding: 5px;
 }
 
+/*
 blockquote p {
 	color: #000;
 	opacity: 0.5;
@@ -91,30 +103,64 @@ blockquote > *:before {
 	float: left;
 	font-size: 300%;
     color: #336600;
+	margin-top: 40px;
+    padding-top: 40px;
+	line-height: 1em;
 }
 blockquote > *:after { 
 	content: '\201D'; 
 	float: right;
 	font-size: 300%;
     color: #336600;
-	margin-top: 0px;
-    padding-top: 20px;
+	margin-top: 140px;
+    padding-top: 40px;
 }
-blockquote q:before { 
-	content: '\2018'; 
-	float: left;
-	font-size: 300%;
-    color: #336600;
+*/
+
+blockquote p {
+	color: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	background: #B3D686;
+	width: 480px;
+	margin:1.5em 10px;
+	padding:.5em 10px;
+	font: italic;
 }
-blockquote q:after { 
-	content: '\2019'; 
-	float: right;
-	font-size: 300%;
+blockquote * { quotes: '\201C''\201D''\2018''\2019'; }
+blockquote > *:before { 
     color: #336600;
-	margin-top: 0px;
-    padding-top: 20px;
+	content:open-quote;
+	font: italic normal 12pt/1.2em Georgia;
+	font-size:5em;
+	line-height:.1em;
+	margin-right:.27em;
+	vertical-align:-.4em;
 }
 
+/*
+blockquote {
+background:#f9f9f9;
+border-left:10px solid #ccc;
+margin:1.5em 10px;
+padding:.5em 10px;
+quotes:"\201C""\201D""\2018""\2019";
+width: 400px;
+font: italic normal 12pt/1.2em Georgia;
+color: #888;
+}
+blockquote:before {
+color:#ccc;
+content:open-quote;
+font-size:4em;
+line-height:.1em;
+margin-right:.25em;
+vertical-align:-.4em;
+}
+blockquote p {
+display:inline;
+}
+ */
 /* side menu */
 
 #side {
@@ -357,4 +403,8 @@ div.sidepanel:hover {
 	background: #f0d307;
 	color: #000;
 	text-decoration: none;
+}
+
+img {
+	border-style: none;
 }
