@@ -17,9 +17,10 @@ def new():
     for category in categorylist:
         postform[0].append(XML(str(INPUT(_type="checkbox", _name="category", _value=category.id))+category.title))
     postform[0].append(
-        DIV(
+        (
             "Tags:", 
-            INPUT(_type="textbox", _name="tags", _size="50")
+            INPUT(_type="textbox", _name="tags", _size="40"),
+            ""
         )
     )
     postform[0].append(
@@ -53,11 +54,14 @@ def edit():
     for category in categorylist:
         checked = "on" if int(category.id) in postcategories else ""
         editform[0].append(XML(str(INPUT(_type="checkbox", _name="category", _value=category.id, value=checked))+category.title))
+    editform[0].append(("Tags:", INPUT(_type="textbox", _name="tags", _size="40", _value=", ".join(posttags), _style="margin-left: 100px;"), ""))
     editform[0].append(
-        DIV(
-            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('/init/posts/post_preview', ['post_body'], 'preview')"))
+        (
+            "",
+            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('/init/posts/post_preview', ['post_body'], 'preview')"),
+            ""
+        )
     )
-    editform[0].append(DIV(XML("<strong>Tags:</strong>"), INPUT(_type="textbox", _name="tags", _size="50", _value=", ".join(posttags), _style="margin-left: 100px;")))
     if editform.accepts(request.vars, session):
         if 'category' in request.vars:
             if isinstance(request.vars.category, list):

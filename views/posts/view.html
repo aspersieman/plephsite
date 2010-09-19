@@ -43,10 +43,10 @@
 				</div>
 			</div>
 		{{ pass }}
+	{{else:}}
+	Post not found
+	{{pass}}
 	</div>
-{{else:}}
-Post not found
-{{pass}}
 </div>
 
 {{if post:}}
@@ -68,10 +68,6 @@ Post not found
 {{ pass }}
 
 <h2>Have Your Say</h2>
-{{if auth.is_logged_in():}}
-	<p>Comments support <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a> syntax.</p>
-	{{= commentform }}
-{{else:}}
-Please log in to comment.
-{{pass}}
-
+<p>Comments support <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a> syntax.</p>
+{{= commentform }}
+{{ pass }}

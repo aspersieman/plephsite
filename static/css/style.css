@@ -261,7 +261,7 @@ display:inline;
 }
 
 #bottom img {
-	margin: 5px;
+	/*margin: 5px;*/
 	border: 0;
 }
 
@@ -407,4 +407,27 @@ div.sidepanel:hover {
 
 img {
 	border-style: none;
+	max-width: 540px;
+}
+
+/* Authentication menu */
+.authmenu {
+	font-size: 0.7em;
+	display: float;
+	background: #a6da87;
+	border: blue 1px solid;
+	/* margin: 3px 5px 0px 30px; */
+	padding-right: 2px;
+	padding: 2px 2px 2px 2px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	/*width: 130px; */
+	text-decoration: none;
+	font-weight: bold;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.authmenu a {
+	color: #d96b12;
 }
