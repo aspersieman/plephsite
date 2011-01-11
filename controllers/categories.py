@@ -1,4 +1,5 @@
 # coding: utf8
+# vim:set filetype=python.web2py:
 
 response.title = "Pleph"
 response.subtitle = "Exuding awesomage - NOW WITH MORE LLAMAS!"

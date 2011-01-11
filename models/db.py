@@ -17,9 +17,9 @@ service = Service(globals())
 
 crud.settings.auth = auth 
 mail = Mail()  
-mail.settings.server = "smtp.gmail.com:587"  
+mail.settings.server = "gae"  
 mail.settings.sender = "aspersieman@gmail.com" 
-mail.settings.login = "aspersieman:"
+mail.settings.login = "aspersieman@gmail.com:Th3r41n1nsp41n"
 auth.settings.mailer = mail 
 #auth.settings.registration_requires_verification = True
 #auth.settings.registration_requires_approval = True
