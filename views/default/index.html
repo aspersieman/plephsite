@@ -1,5 +1,5 @@
 {{extend 'layout.html'}}
-{{ import gluon.contrib.markdown }}
+{{ import markdown }}
 
 {{ for post in posts: }}
 <div class="maincontent">
@@ -12,8 +12,8 @@
 	</a>
 	</p>
 	<br/>
-	<div class="subinfo" style="font-size: 8pt">Posted by {{=post.username}} on {{=post.addeddate}}</div>
-    <div>{{= XML(gluon.contrib.markdown.WIKI(post.body)) }}</div>
+	<div class="subinfo" style="font-size: 8pt">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></div>
+    <div>{{= XML(markdown.WIKI(post.body)) }}</div>
 </div>
 <br/>
 {{ pass }}

@@ -3,9 +3,29 @@ body {
 	font-size: 10pt;
 	/* font-family: Monaco, monospace; */
 	font-family: Verdana, monospace;
-	color: #000;
+
 	background: #f4f5f0;
 	text-align: center;
+}
+
+pre {
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+	background: #f0f0f0;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	line-height: 20px; /*--Height of each line of code--*/
+	background: url(../images/pre_code_bg.gif) repeat-y left top; /*--Background of lined paper--*/
+	width: 540px;
+	overflow: auto; /*--If the Code exceeds the width, a scrolling is available--*/
+	overflow-Y: hidden;  /*--Hides vertical scroll created by IE--*/
+}
+
+pre code {
+	margin: 0 0 0 40px;  /*--Left Margin--*/
+	padding: 18px 0;
+	display: block;
 }
 
 /* content wrapper */
@@ -313,7 +333,7 @@ button {
 /* 'A Leaf' CSS - http://gregdev.net */
 
 div.maincontent {
-	border: 1px solid blue;
+	border: 2px solid #0000FF;
 	text-align: left;
 	font-size: 1em;
 	padding-left: 10px;
@@ -330,9 +350,18 @@ div.subinfo {
 	opacity: 0.5;
 	filter: alpha(opacity=50);
 	text-decoration: none;
-	font-weight: bold;
 	font-size: 0.8em;
 	text-align: right;
+}
+
+div.commentcontent {
+	border: 1px solid #5858FA;
+	text-align: left;
+	font-size: 1em;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 div.commentheading {
@@ -343,24 +372,22 @@ div.commentheading {
 	opacity: 0.5;
 	filter: alpha(opacity=50);
 	text-decoration: none;
-	font-weight: bold;
-	font-size: 0.8em;
+	font-size: 0.9em;
 }
 
 div.commentbody {
 	text-align: left;
 	font-size: 1em;
-	padding-left: 10px;
 }
-
+/*
 pre {
-	white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
-	white-space: -pre-wrap; /* Opera 4 - 6 */
-	white-space: -o-pre-wrap; /* Opera 7 */
-	white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
-	word-wrap: break-word; /* IE 5.5+ */
+	white-space: -moz-pre-wrap;  Mozilla, supported since 1999 
+	white-space: -pre-wrap;  Opera 4 - 6 
+	white-space: -o-pre-wrap;  Opera 7 
+	white-space: pre-wrap;  CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space 
+	word-wrap: break-word;  IE 5.5+ 
 }
-
+*/
 div.sidepanelheading {
 	color: #000;
 	display: block;
@@ -433,3 +460,4 @@ img {
 .authmenu a {
 	color: #d96b12;
 }
+

@@ -72,7 +72,8 @@ db.define_table("images",
     Field("addeddate", "datetime", default=request.now, readable=False, writable=False)
 )
 
-db.images.title.requires = [IS_NOT_EMPTY(), IS_NOT_IN_DB(db, db.images.title)]
+db.images.title.requires = [IS_NOT_EMPTY(error_message = "Enter a title for the image"), IS_NOT_IN_DB(db, db.images.title)]
+db.images.filename.requires = IS_NOT_EMPTY(error_message = "You must supply an image to upload")
 
 # Initial setup
 admin = db(db.auth_user.email == "aspersieman@gmail.com").select()

@@ -2,13 +2,12 @@
 
 {{if image:}}
 	{{if len(image):}}
-	<div class=maincontent">
+	<div class="maincontent">
 		<div class="subinfo">Image title : {{=image.title}}</div>
 		<img src = "{{=URL(r = request, f = 'download', args = image.filename)}}"/>
 		<div class="subinfo">Image filename : {{=image.filename}}</div>
-		<div class="subinfo">Markdown link : 
-		![IMAGE DESCRIPTION](/init/images/download/{{=image.filename}} "HOVER TEXT")
-		</div>
+		Markdown link:<br/>
+		<pre><code>![IMAGE DESCRIPTION](/init/images/download/{{=image.filename}} "HOVER TEXT")</code></pre>
 	</div>
 	<br/>
 	{{pass}}

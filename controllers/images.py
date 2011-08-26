@@ -15,3 +15,7 @@ def index():
 def view():
     image = db(db.images.id == request.args(0)).select()[0]
     return dict(image = image)
+
+@auth.requires_membership('Admin')
+def data(): 
+    return dict(form=crud())

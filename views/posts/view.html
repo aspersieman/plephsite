@@ -1,20 +1,22 @@
 {{extend 'layout.html'}}
-{{ import gluon.contrib.markdown }}
+{{ import markdown }}
 <div class="maincontent">
 	{{if post:}}
-	<h1 class="sectionheading">
-		{{= post.title }}
-	</h1>
+	<div class="title">
+		<h1 class="sectionheading">
+			{{= post.title }}
+		</h1>
+	</div>
 	<p class="sectionheadingimage">
 	<a href='/{{=request.application}}/feeds/posts.rss'>
 		<img src='/init/static/images/feed-icon-large.png' />
 	</a>
 	</p>
 	<br/>
-	<div class="subinfo" style="font-size: 8pt">Posted by {{=post.username}} on {{=str(post.addeddate)[0:10]}}</div>
+	<div class="subinfo" style="font-size: 8pt">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></div>
 
 	<div class="mainbody">
-		<div>{{= XML(gluon.contrib.markdown.WIKI(post.body)) }}</div>
+		<div>{{= XML(markdown.WIKI(post.body)) }}</div>
 
 		{{ if categories: }}
 			<br/>
@@ -42,7 +44,18 @@
 			</div>
 		{{ pass }}
 	{{else:}}
-	Post not found
+	<div class="title">
+		<h1 class="sectionheading">
+		</h1>
+	</div>
+	<p class="sectionheadingimage">
+	</p>
+	<br/>
+	<div class="subinfo" style="font-size: 8pt"></div>
+
+	<div class="mainbody">
+		<div></div>
+	Post not found.
 	{{pass}}
 	</div>
 </div>
@@ -51,12 +64,13 @@
 <h2>Comments</h2>
 {{ if comments: }}
 	{{ for comment in comments: }}
-	<div class="maincontent">
+	<div class="commentcontent">
 		<div class="commentheading">
-			<p style="font-size: 9px;">Posted by {{= comment.name}} on {{= comment.addeddate }}</p>
+			<p style="font-size: 9px;">Posted by <strong>{{= comment.name}}</strong> on <strong>{{= str(comment.addeddate)[0:19] }}</strong></p>
 		</div>
 		<div class="commentbody">
-			{{= XML(gluon.contrib.markdown.WIKI(comment.commentbody).xml(), sanitize = True) }}
+			{{= XML(markdown.WIKI(comment.commentbody).xml(), sanitize = True) }}
+		<br/>
 		</div>
 	</div>
 	<br/>

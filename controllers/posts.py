@@ -1,6 +1,6 @@
 # coding: utf8
 
-from gluon.contrib.markdown import WIKI
+from markdown import WIKI
 
 response.title = "Pleph"
 response.subtitle = "A blog about programming, comics, Thailand and wordsmithing"

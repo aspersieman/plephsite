@@ -11,10 +11,7 @@
 <div class="maincontent">
 	<ul>
 		{{ for image in images: }}
-		{{=LI(A(image.title.decode("latin1"), _href = URL(r = request, f = "view", args = image.id)), " - [", str(image.addeddate), "]")}}
-		{{pass}}
-	</ul>
-</div>
+		{{=LI(A(image.title.decode("latin1"), _href = URL(r = request, f = "view", args = image.id)), " - [Uploaded on: ", str(image.addeddate)[:19], "]")}} {{pass}} </ul> </div>
 {{else:}}
 No images yet. Please upload an image.
 {{pass}}

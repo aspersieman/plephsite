@@ -1,6 +1,7 @@
 # coding: utf8
 
-import gluon.contrib.markdown
+from markdown import WIKI
+response.generic_patterns = ['*']
 
 @service.rss
 def posts():
@@ -8,7 +9,7 @@ def posts():
     urlbase = request.env.wsgi_url_scheme + "://" + request.env.http_host
     items = []
     for post in posts:
-        desc = str(XML(gluon.contrib.markdown.WIKI(post.body[0:500]))) + "..." + str(A(" [more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.body) > 0 else XML(gluon.contrib.markdown.WIKI(post.body))
+        desc = str(XML(WIKI(post.body[0:500]))) + "..." + str(A(" [more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.body) > 0 else XML(WIKI(post.body))
         items.append(
             dict(
                 title = post.title,
@@ -20,6 +21,17 @@ def posts():
     return dict(
         title= "Pleph",
         link = urlbase + URL(request.application, c = "default", f = "index"), 
-        description = "Exuding awesomage - NOW WITH MORE LLAMAS!",
+        description = "A blog about programming, comics, Thailand and wordsmithing",
         items = items
     )
+
+def feed():
+    return dict(title="my feed",
+                link="http://feed.example.com", 
+                description="my first feed",
+                items=[
+                  dict(title="my feed",
+                       link="http://feed.example.com", 
+                       description="my first feed")
+                ])
+
