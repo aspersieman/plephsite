@@ -43,6 +43,43 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 			}
 		</style>
 		<script type="text/javascript">
+			var formatDate = function (formatDate, formatString) {
+				if(formatDate instanceof Date) {
+					var months = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+					var yyyy = formatDate.getFullYear();
+					var yy = yyyy.toString().substring(2);
+					var m = formatDate.getMonth();
+					var mm = m < 10 ? "0" + m : m;
+					var mmm = months[m];
+					var d = formatDate.getDate();
+					var dd = d < 10 ? "0" + d : d;
+					
+					var h = formatDate.getHours();
+					var hh = h < 10 ? "0" + h : h;
+					var n = formatDate.getMinutes();
+					var nn = n < 10 ? "0" + n : n;
+					var s = formatDate.getSeconds();
+					var ss = s < 10 ? "0" + s : s;
+
+					formatString = formatString.replace(/yyyy/i, yyyy);
+					formatString = formatString.replace(/yy/i, yy);
+					formatString = formatString.replace(/mmm/i, mmm);
+					formatString = formatString.replace(/mm/i, mm);
+					formatString = formatString.replace(/m/i, m);
+					formatString = formatString.replace(/dd/i, dd);
+					formatString = formatString.replace(/d/i, d);
+					formatString = formatString.replace(/hh/i, hh);
+					formatString = formatString.replace(/h/i, h);
+					formatString = formatString.replace(/nn/i, nn);
+					formatString = formatString.replace(/n/i, n);
+					formatString = formatString.replace(/ss/i, ss);
+					formatString = formatString.replace(/s/i, s);
+
+					return formatString;
+				} else {
+					return "";
+				}
+			}
 			$(document).ready(
 				jQuery.fn.getReaderContent = function(readeritems) {
 				if (!readeritems || !readeritems.items) return;
@@ -64,14 +101,16 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 
 				for (var i = 0; i <= numitems; i++) {
 					var item = readeritems.items[i];
+					var itemdatepublished = formatDate(new Date((item.published * 1000)), "yyyy-mm-dd");
+
 					sreaderpaneltext += "<div class='sidepanel' style='line-height:100%;'>";
-					sreaderpaneltext += "<a style='font-size:0.9em;line-height:100%;' class='title' href='" + item.alternate.href + "'>";
+					sreaderpaneltext += "<a tyle='font-size:0.9em;line-height:100%;' class='title' href='" + item.alternate.href + "'>";
 					sreaderpaneltext += item.title + "</a>";
 					sreaderpaneltext += "<div class='meta' style='font-size:0.9em';line-height:100%;>";
 					sreaderpaneltext += "from<br/>";
-					sreaderpaneltext += item.origin.title
+					sreaderpaneltext += item.origin.title;
 					sreaderpaneltext += "<br/>on<br/>";
-					sreaderpaneltext += (new Date(item.published * 1000)).toLocaleString();
+					sreaderpaneltext += itemdatepublished;
 					sreaderpaneltext += "</div>";
 					sreaderpaneltext += "</div>";
 				}
@@ -110,6 +149,14 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 				{{include}}
 			</div>
 			<div id="side">
+				{{if response.menu_about:}}
+				<ul>
+					<li>
+					<a class="item" href="{{=response.menu_about[0][2] or '#'}}">{{=response.menu_about[0][0]}}</a>
+					</li>
+					{{pass}}
+				</ul>
+				{{pass}}
 				{{if response.menu_post:}}
 				<ul>
 					<li>

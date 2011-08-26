@@ -316,7 +316,8 @@ div.maincontent {
 	border: 1px solid blue;
 	text-align: left;
 	font-size: 1em;
-	padding-left: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
@@ -331,6 +332,7 @@ div.subinfo {
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 0.8em;
+	text-align: right;
 }
 
 div.commentheading {

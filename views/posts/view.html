@@ -11,11 +11,9 @@
 	</a>
 	</p>
 	<br/>
-	<br/>
-	<div class="subinfo" style="font-size: 8pt">Posted by {{=post.username}} on {{=post.addeddate}}</div>
+	<div class="subinfo" style="font-size: 8pt">Posted by {{=post.username}} on {{=str(post.addeddate)[0:10]}}</div>
 
 	<div class="mainbody">
-		<br/>
 		<div>{{= XML(gluon.contrib.markdown.WIKI(post.body)) }}</div>
 
 		{{ if categories: }}
@@ -37,7 +35,7 @@
 			{{ tagcounter = 1 }}
 				<div>Tags: 
 				{{ for tag in tags: }}
-					{{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }}. {{ pass }}
+					{{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }} {{ pass }}
 				{{ tagcounter = tagcounter + 1 }}
 				{{ pass }}
 				</div>

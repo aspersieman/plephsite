@@ -4,6 +4,12 @@ response.title = request.application
 response.subtitle = T('Llamas, eels and destruction...')
 
 if 'auth' in globals():
+    response.menu_about = [
+        ['About This Site', False, URL(request.application, 'about', 'index'),
+            [
+            ],
+        ],
+    ]
     if not auth.is_logged_in():
         """
         response.menu_auth = [
@@ -35,7 +41,7 @@ if 'auth' in globals():
             ]
     if auth.has_membership(auth.id_group("Admin")):
         response.menu_post = [
-            ['Posts', False, URL(request.application, 'default', 'index'),
+            ['Home', False, URL(request.application, 'default', 'index'),
                 [
                     ['New Post', False, URL(request.application, 'posts', 'new')],
                     ['Manage Posts', False, URL(request.application, 'posts', 'manageposts')],
@@ -47,7 +53,7 @@ if 'auth' in globals():
         ]
     else:
         response.menu_post = [
-            ['Posts', False, URL(request.application, 'default', 'index'),
+            ['Home', False, URL(request.application, 'default', 'index'),
                 [
                 ],
             ],

@@ -3,7 +3,7 @@
 from gluon.contrib.markdown import WIKI
 
 response.title = "Pleph"
-response.subtitle = "Exuding awesomage - NOW WITH MORE LLAMAS!"
+response.subtitle = "A blog about programming, comics, Thailand and wordsmithing"
 
 def data():
     form = crud()
