@@ -9,7 +9,10 @@ def posts():
     urlbase = request.env.wsgi_url_scheme + "://" + request.env.http_host
     items = []
     for post in posts:
-        desc = str(XML(WIKI(post.excerpt))) + "..." + str(A("[read more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.excerpt) > 0 else XML(WIKI(post.body))
+        if post.excerpt:
+            desc = str(XML(WIKI(post.excerpt))) + "..." + str(A("[read more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.excerpt) > 0 else XML(WIKI(post.body))
+        else:
+            desc = str(XML(WIKI(post.body[0:500]))) + "..." + str(A(" [more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.body) > 0 else XML(WIKI(post.body))
         items.append(
             dict(
                 title = post.title,
