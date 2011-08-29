@@ -1,5 +1,7 @@
 # coding: utf8
 
+# TODO: Add panel for archives
+
 def categories():
     category_links = ""
     categories = db(db.categories.title != "").select(db.categories.title, db.categories.id)

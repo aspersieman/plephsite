@@ -32,7 +32,7 @@ db.define_table("post",
     Field("title"),
     Field("body", "text"),
     Field("addeddate", "datetime", default=request.now, readable=False, writable=False),
-    Field("file", "upload")
+    Field("excerpt", "text")
 )
 
 db.post.id.readable = False
