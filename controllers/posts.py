@@ -103,7 +103,14 @@ def view():
         commentform = SQLFORM(db.comment)
         commentform[0].insert(-1, TR('',  Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "The text entered does not match.")))
         if commentform.accepts(request.vars, session):
+            to = [mail.settings.sender]
+            subject = "New comment on post: '" + str(post.title) + "'"
+            message = "A new comment was posted to the blog at 'http://pleph.appspot.com'\r\rThe comment body:\r\r" + str(request.commentbody) + "\r\r\rYou can view the comment here: http://pleph.appspot.com" + str(request.application) + "/posts/view/" + str(postid) + "."
+            mail.send(to = to, subject = subject, message = message)
+            response.flash = "Comment posted succesfully."
             redirect(URL(r=request, f="view", args=postid))
+        elif commentform.errors:
+            response.flash = "There was an error saving your comment. Please try again."
     else:
         post = None
         relations = None
