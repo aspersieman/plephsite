@@ -100,11 +100,8 @@ def view():
         tags = [relation.tag for relation in relations if relation.relationtype == 'tag']
         comments = db(db.comment.post == postid).select(orderby =~ db.comment.addeddate)
         db.comment.post.default = postid
-        if auth.is_logged_in():
-            commentform = SQLFORM(db.comment)
-            commentform[0].insert(-1, TR('',  Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "The text entered does not match.")))
-        else:
-            commentform = FORM()
+        commentform = SQLFORM(db.comment)
+        commentform[0].insert(-1, TR('',  Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "The text entered does not match.")))
         if commentform.accepts(request.vars, session):
             redirect(URL(r=request, f="view", args=postid))
     else:

@@ -69,7 +69,7 @@
 			<p style="font-size: 9px;">Posted by <strong>{{= comment.name}}</strong> on <strong>{{= str(comment.addeddate)[0:19] }}</strong></p>
 		</div>
 		<div class="commentbody">
-			{{= XML(markdown.WIKI(comment.commentbody).xml(), sanitize = True) }}
+			{{= markdown.WIKI(XML(comment.commentbody, sanitize = True).xml()) }}
 		<br/>
 		</div>
 	</div>
