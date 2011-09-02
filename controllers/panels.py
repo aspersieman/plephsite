@@ -7,7 +7,9 @@ def categories():
     categories = db(db.categories.title != "").select(db.categories.title, db.categories.id)
     if len(categories) > 0:
         for category in categories:
-            category_links += "<a href='/" + request.application + "/categories/view/" + str(category.id) + "'>" + category.title + "</a> " 
+            category_post_link = db((db.relations.post != None) & (db.relations.categorytitle == category.title)).select()
+            if category_post_link:
+                category_links += "<a href='/" + request.application + "/categories/view/" + str(category.id) + "'>" + category.title + "</a> " 
         form = XML("<div class='sidepanelheading'>Post categories</div><div class='sidepanel'>" + category_links + "</div>")
     else:
         form = XML("<div></div>")

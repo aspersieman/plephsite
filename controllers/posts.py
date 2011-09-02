@@ -51,15 +51,19 @@ def edit():
     posttags = [relation.tag for relation in relations if relation.relationtype == 'tag']
     editform = SQLFORM(db.post, post, deletable=True)
     categorylist = db(db.categories.id > 0).select()
+    categorycheckboxes = []
     for category in categorylist:
-        checked = "on" if int(category.id) in postcategories else ""
-        editform[0].append(XML(str(INPUT(_type="checkbox", _name="category", _value=category.id, value=checked))+category.title))
-    editform[0].append(("Tags:", INPUT(_type="textbox", _name="tags", _size="40", _value=", ".join(posttags), _style="margin-left: 100px;"), ""))
-    editform[0].append(
+        checked = "True" if int(category.id) in postcategories else ""
+        if checked == "True":
+            categorycheckboxes.append(str(INPUT(_type = "checkbox", _name = "category", _value = category.id, value = True)) + category.title)
+        else:
+            categorycheckboxes.append(str(INPUT(_type = "checkbox", _name = "category", _value = category.id)) + category.title)
+    editform[0].insert(-1, ("Categories: ", XML("".join(categorycheckboxes))))
+    editform[0].insert(-1, ("Tags:", INPUT(_type="textbox", _name="tags", _size="64", _value=", ".join(posttags))))
+    editform[0].insert(-1,
         (
             "",
             INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('/init/posts/post_preview', ['post_body'], 'preview')"),
-            ""
         )
     )
     if editform.accepts(request.vars, session):
@@ -94,6 +98,10 @@ def view():
     elif post[0].private == True:
         bpost_is_valid = False
     if bpost_is_valid:
+        if auth.has_membership('Admin'):
+            html_edit_post_link = A("[Edit Post]", _href = URL(r = request, f = "edit", args = postid))
+        else:
+            html_edit_post_link = None
         post = post[0]
         relations = db(db.relations.post == postid).select()
         categories = dict((relation.category.id, relation.categorytitle) for relation in relations if relation.relationtype == 'category')
@@ -105,7 +113,7 @@ def view():
         if commentform.accepts(request.vars, session):
             to = [mail.settings.sender]
             subject = "New comment on post: '" + str(post.title) + "'"
-            message = "A new comment was posted to the blog at 'http://pleph.appspot.com'\r\rThe comment body:\r\r" + str(request.commentbody) + "\r\r\rYou can view the comment here: http://pleph.appspot.com" + str(request.application) + "/posts/view/" + str(postid) + "."
+            message = "A new comment was posted to the blog at 'http://pleph.appspot.com'\r\rThe comment body:\r\r" + str(commentform.vars.commentbody) + "\r\r\rYou can view the comment here: http://pleph.appspot.com" + str(request.application) + "/posts/view/" + str(postid) + "."
             mail.send(to = to, subject = subject, message = message)
             response.flash = "Comment posted succesfully."
             redirect(URL(r=request, f="view", args=postid))
@@ -118,14 +126,14 @@ def view():
         tags = None
         commentform = None
         comments = None
-    return dict(post=post, commentform = commentform, categories = categories, tags = tags, comments = comments)
+    return dict(post=post, commentform = commentform, categories = categories, tags = tags, comments = comments, html_edit_post_link = html_edit_post_link)
 
 @auth.requires_membership('Admin')
 def manageposts():
     if not request.vars.delete is None:
         deleteposts(request.vars.delete)
         redirect(URL(r=request, f="manageposts"))
-    posts = db(db.post.id > 0).select()
+    posts = db(db.post.id > 0).select(orderby=~db.post.addeddate)
     return dict(posts=posts)
 
 @auth.requires_membership('Admin')

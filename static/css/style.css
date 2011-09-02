@@ -434,8 +434,19 @@ div.sidepanel:hover {
 	text-decoration: none;
 }
 
-img {
+#markdownimage {
+	display: block;
+	max-width: 540px;
+}
+
+div.markdownimagecontainer {
 	border-style: none;
+	text-align: center;
+	background: #B3D686;
+	font-size: 0.7em;
+}
+
+img {
 	max-width: 540px;
 }
 
@@ -443,7 +454,7 @@ img {
 .authmenu {
 	font-size: 0.7em;
 	display: float;
-	background: #a6da87;
+	background: #A6DA87;
 	border: blue 1px solid;
 	/* margin: 3px 5px 0px 30px; */
 	padding-right: 2px;
