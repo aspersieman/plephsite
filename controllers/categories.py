@@ -1,7 +1,7 @@
 # coding: utf8
 # vim:set filetype=python.web2py:
 
-response.title = "Pleph"
+response.title = "Pleph - A blog about programming, comics, Thailand and wordsmithing"
 response.subtitle = "A blog about programming, comics, Thailand and wordsmithing"
 
 def view():

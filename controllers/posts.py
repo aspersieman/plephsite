@@ -2,7 +2,7 @@
 
 from markdown import WIKI
 
-response.title = "Pleph"
+response.title = "Pleph - A blog about programming, comics, Thailand and wordsmithing"
 response.subtitle = "A blog about programming, comics, Thailand and wordsmithing"
 
 def data():

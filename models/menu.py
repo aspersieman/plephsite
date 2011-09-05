@@ -11,18 +11,7 @@ if 'auth' in globals():
         ],
     ]
     if not auth.is_logged_in():
-        """
-        response.menu_auth = [
-           [T('Login'), False, auth.settings.login_url,
-            [
-                   [T('Register'), False,
-                    URL(request.application,'default','user/register')],
-                   [T('Lost Password'), False,
-                    URL(request.application,'default','user/retrieve_password')]]
-            ],
-           ]
-        """
-        response.menu_auth = [
+        response.menu_login = [
             [T('Login'), False, auth.settings.login_url,
              [],
             ]

@@ -11,37 +11,6 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 		<link rel="shortcut icon" href="/init/static/images/favicon.ico">
 		{{response.files.append(URL(request.application,'static/css','style.css'))}}
 		{{include 'web2py_ajax.html'}}
-		<style>
-			div.flash {
-			position: absolute;
-			float: right;
-			padding: 10px;
-			top: 0px;
-			right: 0px;
-			opacity: 0.75;
-			margin: 10px 10px 10px 10px;
-			text-align: center;
-			clear: both;
-			color: #fff;
-			font-size: 11pt;
-			text-align: center;
-			vertical-align: middle;
-			cursor: pointer;
-			background: black;
-			border: 2px solid #fff;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			z-index: 2;
-			}
-			div.error {
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			background-color: red;
-			color: white;
-			padding: 3px;
-			border: 1px solid #666;
-			}
-		</style>
 		<script type="text/javascript">
 			var formatDate = function (formatDate, formatString) {
 				if(formatDate instanceof Date) {
@@ -137,26 +106,15 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 			</div>
 			{{pass}}
 			<div id="title">
-				<!--h1>
-					<a href="/">{{=response.title or request.application}}</a>
-				</h1-->
 				<a href="/"><img src="/init/static/images/pleph.png" alt="Exuding awesomage..." /></a>
-				<div>&nbsp;&nbsp;&nbsp;<strong>{{=response.subtitle or "Llamas, Eels, Meese...glorious"}}</strong>
+				<div>&nbsp;&nbsp;&nbsp;<strong>{{=response.subtitle or "A blog about programming, comics, Thailand and wordsmithing"}}</strong>
 				</div>
 			</div>
+			<div class="flash">{{=response.flash or ''}}</div>
 			<div id="content">
-				<div class="flash">{{=response.flash or ''}}</div>
-				{{include}}
+			{{include}}
 			</div>
 			<div id="side">
-				{{if response.menu_about:}}
-				<ul>
-					<li>
-					<a class="item" href="{{=response.menu_about[0][2] or '#'}}">{{=response.menu_about[0][0]}}</a>
-					</li>
-					{{pass}}
-				</ul>
-				{{pass}}
 				{{if response.menu_post:}}
 				<ul>
 					<li>
@@ -165,6 +123,22 @@ Please leave the 'designed by' link intact and visible; that's all I ask!
 					{{for mi in response.menu_post[0][3]:}}
 					<li>
 					<a class="itemsub" href="{{=mi[2]}}">{{=mi[0]}}</a>
+					</li>
+					{{pass}}
+				</ul>
+				{{pass}}
+				{{if response.menu_about:}}
+				<ul>
+					<li>
+					<a class="item" href="{{=response.menu_about[0][2] or '#'}}">{{=response.menu_about[0][0]}}</a>
+					</li>
+					{{pass}}
+				</ul>
+				{{pass}}
+				{{if response.menu_login:}}
+				<ul>
+					<li>
+					<a class="item" href="{{=response.menu_login[0][2] or '#'}}">{{=response.menu_login[0][0]}}</a>
 					</li>
 					{{pass}}
 				</ul>
