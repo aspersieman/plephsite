@@ -1,6 +1,6 @@
 # coding: utf8
 
-from markdown import WIKI
+from applications.init.modules.markdown import WIKI
 
 response.title = "Pleph - A blog about programming, comics, Thailand and wordsmithing"
 response.subtitle = "A blog about programming, comics, Thailand and wordsmithing"

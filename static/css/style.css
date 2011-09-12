@@ -440,3 +440,12 @@ div.flash {
     -webkit-border-radius: 5px;
     z-index: 2;
 }
+
+div.error {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: red;
+    color: white;
+    padding: 3px;
+    border: 1px solid #666;
+}

@@ -1,5 +1,5 @@
 {{extend 'layout.html'}}
-{{ import markdown }}
+{{ import applications.init.modules.markdown as markdown }}
 <div class="maincontent">
 	{{if post:}}
 	<div class="title">
@@ -20,7 +20,7 @@
 	<div class="subinfo" style="font-size: 8pt">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></div>
 
 	<div class="mainbody">
-		<div>{{= XML(markdown.WIKI(post.body)) }}</div>
+		<div>{{= markdown.WIKI(post.body, safe_mode = "safe") }}</div>
 
 		{{ if categories: }}
 			<br/>
