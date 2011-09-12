@@ -148,4 +148,4 @@ def deleteposts(posts_delete = None):
 
 @auth.requires_membership('Admin')
 def post_preview():
-    return WIKI(request.vars.post_body).xml()
+    return WIKI(request.vars.post_body, safe_mode = "safe").xml()

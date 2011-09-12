@@ -14,13 +14,12 @@
 	<br/>
 	<div class="subinfo" style="font-size: 8pt">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></div>
 	{{ if post.excerpt: }}
-	<div>{{= XML(markdown.WIKI(post.excerpt))}}
-	</div>
+	<div>{{= markdown.WIKI(post.excerpt, safe_mode = "safe") }}</div>
 	<div align="right">
 		<a href="/{{=request.application}}/posts/view/{{= post.id }}">read more...</a>
 	</div>
 	{{ else: }}
-    <div>{{= XML(markdown.WIKI(post.body)) }}</div>
+	<div>{{= markdown.WIKI(post.body, safe_mode = "safe") }}</div>
 	{{ pass }}
 	{{ if categories: }}
 		<br/>

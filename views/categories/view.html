@@ -1,5 +1,7 @@
 {{extend 'layout.html'}}
 
+{{ import applications.init.modules.markdown as markdown }}
+
 {{if categoryposts:}}
 <h1>Entries Posted Under "{{= category.title }}"</h1>
 	{{ if len(categoryposts) > 0:}}
@@ -15,7 +17,7 @@
 					{{=XML(postinfo[categorypost.post])}}
 				</div>
 				<br/>
-				{{=postexcerpts[categorypost.post]}}
+				{{=markdown.WIKI(postexcerpts[categorypost.post], safe_mode = "safe")}}
 				{{ if posttags: }}
 					<br/>
 					<div class="subinfo">
