@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<h1>Manage Categories</h1>
+{{if request.args[0] == "create":}}
+<h2>Add a category</h2>
+{{pass}}
+{{=form}}
+
+<h2>Categories</h2>
+{{if len(categories) > 0:}}
+{{=categories}}
+{{else:}}
+No categories exist. Please add a new category.
+{{pass}}

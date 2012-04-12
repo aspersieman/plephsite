@@ -1,0 +1,88 @@
+{{extend 'layout.html'}}
+{{ import applications.init.modules.markdown as markdown }}
+<div class="maincontent">
+	{{if post:}}
+	<div class="title">
+		<h1 class="sectionheading">
+			{{= post.title }}
+		</h1>
+	</div>
+	<p class="post-social">
+		<a class="post-googleplus"  title="PlusOne" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}"></a>
+		<a class="post-twitter"  title="Twitter" target="_blank" href="http://twitter.com/intent/tweet?url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}&text=New Pleph Post: {{= post.title }}"></a>
+		<div class="fb-like" style="align: right" data-href="http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+	</p>
+	{{ if html_edit_post_link: }}
+	<br/>
+	{{	=html_edit_post_link }}
+	{{ pass }}
+	<br/>
+	<pre class="subinfo" style="font-size: 8pt; text-align: left;">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></pre>
+
+	<div class="mainbody">
+		<div>{{= markdown.WIKI(post.body, safe_mode = "safe") }}</div>
+
+		{{ if categories: }}
+			<br/>
+			<div class="subinfo">
+			{{ categorycounter = 1 }}
+			<div><strong>Categories</strong>
+				{{ for category in categories: }}
+				<a href="/{{=request.application}}/categories/view/{{= category }}">{{= categories[category] }}</a>{{ if categorycounter != len(categories): }}, {{ else: }}. {{ pass }}
+				{{ categorycounter = categorycounter + 1 }}
+				{{ pass }}
+				</div>
+			</div>
+		{{ pass }}
+
+		{{ if tags: }}
+			<div class="subinfo">
+			{{ tagcounter = 1 }}
+			<div><strong>Tags: </strong>
+				{{ for tag in tags: }}
+					{{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }} {{ pass }}
+				{{ tagcounter = tagcounter + 1 }}
+				{{ pass }}
+				</div>
+			</div>
+		{{ pass }}
+	{{else:}}
+	<div class="title">
+		<h1 class="sectionheading">
+		</h1>
+	</div>
+	<p class="sectionheadingimage">
+	</p>
+	<br/>
+	<div class="subinfo" style="font-size: 8pt"></div>
+
+	<div class="mainbody">
+		<div></div>
+	Post not found.
+	{{pass}}
+	</div>
+</div>
+
+{{if post:}}
+<h2>Comments</h2>
+{{ if comments: }}
+	{{ for comment in comments: }}
+	<div class="commentcontent">
+		<div class="commentheading">
+			<p style="font-size: 9px;">Posted by <strong>{{= comment.name}}</strong> on <strong>{{= str(comment.addeddate)[0:19] }}</strong></p>
+		</div>
+		<div class="commentbody">
+			{{= markdown.WIKI(XML(comment.commentbody, sanitize = True).xml()) }}
+		<br/>
+		</div>
+	</div>
+	<br/>
+	{{ pass }}
+{{ else: }}
+	<div>No comments made for this post.</div>
+{{ pass }}
+
+<h2>Have Your Say</h2>
+<p>Comments support <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a> syntax.</p>
+{{= commentform }}
+{{ pass }}
