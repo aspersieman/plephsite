@@ -40,10 +40,3 @@ if 'auth' in globals():
                 ],
             ],
         ]
-    else:
-        response.menu_post = [
-            ['Home', False, URL(request.application, 'default', 'index'),
-                [
-                ],
-            ],
-        ]

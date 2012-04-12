@@ -34,7 +34,9 @@ pre code {
 	color: #303030;
 	margin: 0 auto;
 	width: 750px;
-	background: #d9ebc3 url('../images/bg.jpg') no-repeat;
+	min-height: 1576px;
+	height: auto;
+	background: url('../images/bg.jpg') top no-repeat, #d9ebc3 url('../images/bg-reversed.jpg') bottom no-repeat;
 	text-align: left;
 }
 
@@ -43,7 +45,7 @@ pre code {
 /* color: #5e8fbd;427bb0 */
 #title {
 	padding-top: 20px;
-	margin-left: 20px;
+	margin-left: 10px;
 	text-align: left;
 	color: #CC6300;427bb0
 	height: 100px;
@@ -61,6 +63,39 @@ pre code {
 #title a:hover, a:visited:hover {
 	color: #427bb0;
 	text-decoration: none;
+}
+
+#socialicons img {
+	padding: 0px;
+	margin: 0px; 
+	border: 0px;
+	float: right;
+	position: relative;
+}
+
+/* Social media icons */
+a.tooltip { 
+    position: relative; 
+} 
+a.tooltip span { 
+    display: none; 
+} 
+a.tooltip:hover span { 
+    position: absolute; 
+    display: block; 
+
+    /* positioning */ 
+    top: 30px; 
+    left: 30px; 
+    z-index: 100;
+
+    /* styling */ 
+    background-color: #d9ebc3; 
+    color: #000000; 
+	opacity: 0.8;
+	padding: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 /* main content */
@@ -92,7 +127,7 @@ h2 {
 	color: #cd6918;
 }
 
-div.sectionheadingimage {
+div.post-social {
 	float: right;
 }
 
@@ -130,7 +165,7 @@ blockquote > *:before {
 /* side menu */
 
 #side {
-	margin: 20px 0 10px 0;
+	margin: 0px 0 10px 0;
 	line-height: 1.8em;
 	width: 175px;
 	color: #000000;
@@ -194,9 +229,16 @@ blockquote > *:before {
 /* image footer */
 
 #footer {
-	background: url('../images/foot.gif');
+	/* background: url('../images/foot.gif'); */
+	position: relative;
+	float: bottom;
 	width: 750px;
-	height: 23px;
+	height: 200px;
+	font-size: 8pt;
+	padding: 15px;
+	color: #595d8e;
+	line-height: 0.5em;
+	text-align: center;
 }
 
 .clear {
@@ -297,7 +339,20 @@ div.subinfo {
 	filter: alpha(opacity=50);
 	text-decoration: none;
 	font-size: 0.8em;
-	text-align: right;
+	text-align: left;
+}
+
+pre.subinfo {
+	color: #000;
+	background: #a6cca1;
+	margin: 1px 1px 1px 1px;
+	padding-right: 2px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	text-decoration: none;
+	font-size: 0.8em;
+	text-align: left;
+	font-family: Verdana, monospace;
 }
 
 div.commentcontent {
@@ -361,7 +416,7 @@ div.sidepanel {
 	color: #000;
 	font-size: 0.7em;
 	display: block;
-	background: #a6da87;
+	background: #A6DA87;
 	border: blue 1px solid;
 	margin: 3px 5px 0px 30px;
 	padding-right: 2px;
@@ -448,4 +503,52 @@ div.error {
     color: white;
     padding: 3px;
     border: 1px solid #666;
+}
+
+/* Social Icons */
+
+#title-facebook { 
+	background: url(../images/facebook64.png); 
+	width: 64px;
+	height: 64px;
+	position: relative;
+	float: right;
+}
+#title-twitter { 
+	background: url(../images/twitter64.png);
+	width: 64px;
+	height: 64px;
+	position: relative;
+	float: right;
+}
+#title-rss { 
+	background: url(../images/rss64.png);
+	width: 64px;
+	height: 64px;
+	display: block; 
+	position: relative;
+	float: right;
+}
+#title-googleplus  { 
+	background: url(../images/googleplus64.png);
+	width: 64px;
+	height: 64px;
+	position: relative;
+	float: right;
+}
+
+.post-googleplus {
+	background: url(../images/googleplus28.png);
+	width: 28px;
+	height: 28px;
+	position: relative;
+	float: right;
+}
+
+.post-twitter {
+	background: url(../images/twitter28.png);
+	width: 28px;
+	height: 28px;
+	position: relative;
+	float: right;
 }

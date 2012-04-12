@@ -3,7 +3,7 @@
 from applications.init.modules.markdown import WIKI
 
 response.title = "Pleph - A blog about programming, comics, Thailand and wordsmithing"
-response.subtitle = "A blog about programming, comics, Thailand and wordsmithing"
+response.subtitle = "Programming, comics, Thailand and wordsmithing"
 
 def data():
     form = crud()
@@ -127,6 +127,33 @@ def view():
         commentform = None
         comments = None
     return dict(post=post, commentform = commentform, categories = categories, tags = tags, comments = comments, html_edit_post_link = html_edit_post_link)
+
+def archive():
+    MONTHS = {
+        1: "January", 
+        2: "February", 
+        3: "March", 
+        4: "April", 
+        5: "May", 
+        6: "June", 
+        7: "July", 
+        8: "August", 
+        9: "September", 
+        10: "October", 
+        11: "November", 
+        12: "December"}
+    import datetime
+    year = int(request.args(0))
+    month = int(request.args(1))
+    posts = db((db.post.private == False) & (db.post.addeddate.year() == year) & (db.post.addeddate.month() == month)).select(orderby=db.post.addeddate)
+    categories = {}
+    tags = {}
+    for post in posts:
+        relations = db(db.relations.post == post.id).select()
+        categories[post.id] = dict((relation.category.id, relation.categorytitle) for relation in relations if relation.relationtype == 'category')
+        tags[post.id] = [relation.tag for relation in relations if relation.relationtype == 'tag']
+    return dict(posts=posts, categories = categories, tags = tags, year = year, monthname = MONTHS[int(month)])
+    
 
 @auth.requires_membership('Admin')
 def manageposts():

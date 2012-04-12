@@ -7,17 +7,17 @@
 			{{= post.title }}
 		</h1>
 	</div>
-	<p class="sectionheadingimage">
-	<a href='/{{=request.application}}/feeds/posts.rss'>
-		<img src='/init/static/images/feed-icon-large.png' />
-	</a>
+	<p class="post-social">
+		<a class="post-googleplus"  title="PlusOne" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}"></a>
+		<a class="post-twitter"  title="Twitter" target="_blank" href="http://twitter.com/intent/tweet?url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}&text=New Pleph Post: {{= post.title }}"></a>
+		<div class="fb-like" style="align: right" data-href="http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 	</p>
 	{{ if html_edit_post_link: }}
 	<br/>
 	{{	=html_edit_post_link }}
 	{{ pass }}
 	<br/>
-	<div class="subinfo" style="font-size: 8pt">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></div>
+	<pre class="subinfo" style="font-size: 8pt; text-align: left;">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></pre>
 
 	<div class="mainbody">
 		<div>{{= markdown.WIKI(post.body, safe_mode = "safe") }}</div>

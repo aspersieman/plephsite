@@ -1,6 +1,6 @@
 # coding: utf8
 
-from markdown import WIKI
+import applications.init.modules.markdown as markdown
 response.generic_patterns = ['*']
 
 @service.rss
@@ -10,9 +10,9 @@ def posts():
     items = []
     for post in posts:
         if post.excerpt:
-            desc = str(XML(WIKI(post.excerpt))) + "..." + str(A("[read more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.excerpt) > 0 else XML(WIKI(post.body))
+            desc = str(markdown.WIKI(post.excerpt, safe_mode = "safe")) + "..." + str(A("[read more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.excerpt) > 0 else XML(markdown.WIKI(post.body))
         else:
-            desc = str(XML(WIKI(post.body[0:500]))) + "..." + str(A(" [more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.body) > 0 else XML(WIKI(post.body))
+            desc = str(XML(markdown.WIKI(post.body[0:500]))) + "..." + str(A(" [more]", _href = urlbase + URL(request.application, c = "posts", f = "view", args = post.id))) if len(post.body) > 0 else XML(markdown.WIKI(post.body))
         items.append(
             dict(
                 title = post.title,
