@@ -1,7 +1,7 @@
 # coding: utf8
 
 response.title = "Pleph - A blog about programming, comics, Thailand and wordsmithing"
-response.subtitle = "Programming, comics, Thailand and wordsmithing"
+response.subtitle = ""
 
 def index():
     posts = db(db.post.private == False).select(orderby=~db.post.addeddate, limitby = (0, 5))

@@ -3,7 +3,7 @@
 from applications.init.modules.markdown import WIKI
 
 response.title = "Pleph - A blog about programming, comics, Thailand and wordsmithing"
-response.subtitle = "Programming, comics, Thailand and wordsmithing"
+response.subtitle = ""
 
 def data():
     form = crud()
@@ -14,18 +14,16 @@ def data():
 def new():
     postform = SQLFORM(db.post)
     categorylist = db(db.categories.id > 0).select()
+    categorycheckboxes = []
     for category in categorylist:
-        postform[0].append(XML(str(INPUT(_type="checkbox", _name="category", _value=category.id))+category.title))
-    postform[0].append(
+		categorycheckboxes.append(str(INPUT(_type = "checkbox", _name = "category", _value = category.id)) + category.title)
+    postform[0].insert(-1, ("Categories: ", XML("".join(categorycheckboxes))))
+    postform[0].insert(-1, ("Tags:", INPUT(_type="textbox", _name="tags", _size="64", _value="")))
+    postform[0].insert(-1,
         (
-            "Tags:", 
-            INPUT(_type="textbox", _name="tags", _size="40"),
-            ""
+            "",
+            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('/init/posts/post_preview', ['post_body'], 'preview')"),
         )
-    )
-    postform[0].append(
-        DIV(
-            INPUT(_type = "button", _name = "preview", _value = "Preview", _onclick = "ajax('post_preview', ['post_body'], 'preview')"))
     )
     if postform.accepts(request.vars, session):
         if 'category' in request.vars:
@@ -113,7 +111,7 @@ def view():
         if commentform.accepts(request.vars, session):
             to = [mail.settings.sender]
             subject = "New comment on post: '" + str(post.title) + "'"
-            message = "A new comment was posted to the blog at 'http://pleph.appspot.com'\r\rThe comment body:\r\r" + str(commentform.vars.commentbody) + "\r\r\rYou can view the comment here: http://pleph.appspot.com" + str(request.application) + "/posts/view/" + str(postid) + "."
+            message = "A new comment was posted to the blog at 'http://pleph.appspot.com'\r\rThe comment body:\r\r" + str(commentform.vars.commentbody) + "\r\r\rYou can view the comment here: http://pleph.appspot.com/" + str(request.application) + "/posts/view/" + str(postid) + "."
             mail.send(to = to, subject = subject, message = message)
             response.flash = "Comment posted succesfully."
             redirect(URL(r=request, f="view", args=postid))

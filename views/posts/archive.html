@@ -1,0 +1,44 @@
+{{extend 'layout.html'}}
+{{ import applications.init.modules.markdown as markdown }}
+
+<h1>Entries Posted In {{= monthname }}, {{= year}}</h1>
+{{ for post in posts: }}
+<div class="maincontent">
+	<h1 class="sectionheading">
+		<a href="/{{=request.application}}/posts/view/{{= post.id }}">{{= post.title }}</a>
+	</h1>
+	<p class="post-social">
+		<a class="post-googleplus"  title="PlusOne" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}"></a>
+		<a class="post-twitter"  title="Twitter" target="_blank" href="http://twitter.com/intent/tweet?url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}&text=New Pleph Post: {{= post.title }}"></a>
+		<div class="fb-like" style="align: right" data-href="http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+	</p>
+	<pre class="subinfo" style="font-size: 8pt; text-align: left;">Posted by <strong>{{=post.username}}</strong> on <strong>{{=str(post.addeddate)[:10]}}</strong></pre>
+	<div align="right">
+		<a href="/{{=request.application}}/posts/view/{{= post.id }}">Read the post...</a>
+	</div>
+	{{ if categories: }}
+		<br/>
+		<div class="subinfo">
+		{{ categorycounter = 1 }}
+		<div><strong>Categories</strong>
+			{{ for category in categories[post.id]: }}
+			<a href="/{{=request.application}}/categories/view/{{= category }}">{{= categories[post.id][category] }}</a>{{ if categorycounter != len(categories[post.id]): }}, {{ else: }}. {{ pass }}
+			{{ categorycounter = categorycounter + 1 }}
+			{{ pass }}
+			</div>
+		</div>
+	{{ pass }}
+	{{ if tags: }}
+		<div class="subinfo">
+		{{ tagcounter = 1 }}
+		<div><strong>Tags: </strong>
+			{{ for tag in tags[post.id]: }}
+				{{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }} {{ pass }}
+			{{ tagcounter = tagcounter + 1 }}
+			{{ pass }}
+			</div>
+		</div>
+	{{ pass }}
+</div>
+<br/>
+{{ pass }}
