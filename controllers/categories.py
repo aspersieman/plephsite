@@ -2,7 +2,7 @@
 # vim:set filetype=python.web2py:
 
 response.title = "Pleph - A blog about programming, comics, Thailand and wordsmithing"
-response.subtitle = "A blog about programming, comics, Thailand and wordsmithing"
+response.subtitle = ""
 
 def view():
     categoryid = request.args(0) or 0
