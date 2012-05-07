@@ -101,6 +101,7 @@ def view():
         else:
             html_edit_post_link = None
         post = post[0]
+        response.title = "Pleph - " + str(post.title)
         relations = db(db.relations.post == postid).select()
         categories = dict((relation.category.id, relation.categorytitle) for relation in relations if relation.relationtype == 'category')
         tags = [relation.tag for relation in relations if relation.relationtype == 'tag']
