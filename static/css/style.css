@@ -340,6 +340,8 @@ div.subinfo {
 	text-decoration: none;
 	font-size: 0.8em;
 	text-align: left;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 pre.subinfo {
@@ -551,4 +553,24 @@ div.error {
 	height: 28px;
 	position: relative;
 	float: right;
+}
+
+/* Make div's into tables. */
+#container {
+	display: table;
+	width: 100%;
+}
+
+#row  {
+	display: table-row;
+}
+
+#left, #middle, #right {
+	display: table-cell;
+}
+
+#right-comments {
+	display: table-cell;
+	text-align: right;
+	white-space:nowrap;
 }

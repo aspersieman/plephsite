@@ -38,20 +38,17 @@ def post_archive():
 	if post_dates:
 		currentmonth = post_dates[0]['post.addeddate'].month
 		currentyear = post_dates[0]['post.addeddate'].year
-		monthcounter = 1
+		monthcounter = 0
 		posts_archive = {}
 		for post_date in post_dates:
 			if post_date['post.addeddate'].month == currentmonth and post_date['post.addeddate'] == currentyear:
-				if monthcounter > 1:
-					posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + " posts)"
-				else:
-					posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + " post)"
+				posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + ")"
 				monthcounter += 1
 			else:
 				currentmonth = post_date['post.addeddate'].month
 				currentyear = post_date['post.addeddate'].year
-				monthcounter = 1
-				posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + " post)"
+				monthcounter += 1
+				posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + ")"
 
 		post_archive_html += "<div class='sidepanelheading'>Post Archives</div>"
 		for post_arch in posts_archive:

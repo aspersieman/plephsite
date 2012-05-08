@@ -10,26 +10,42 @@
 				<h1 class="sectionheading">
 					<a href="/{{=request.application}}/posts/view/{{= categorypost.post }}">{{= posttitles[categorypost.post] }}</a>
 				</h1>
-				<br/>
-				<br/>
-				<br/>
-				<div class="subinfo">
-					{{=XML(postinfo[categorypost.post])}}
-				</div>
-				<br/>
-				{{=markdown.WIKI(postexcerpts[categorypost.post], safe_mode = "safe")}}
-				{{ if posttags: }}
-					<br/>
-					<div class="subinfo">
-					{{ tagcounter = 1 }}
-					<div><strong>Tags: </strong>
-						{{ for tag in posttags: }}
-							{{= tag.tag }}{{ if tagcounter != len(posttags): }}, {{ else: }} {{ pass }}
-						{{ tagcounter = tagcounter + 1 }}
-						{{ pass }}
-						</div>
-					</div>
-				{{ pass }}
+                <p class="post-social">
+                    <a class="post-googleplus"  title="PlusOne" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= categorypost.post }}"></a>
+                    <a class="post-twitter"  title="Twitter" target="_blank" href="http://twitter.com/intent/tweet?url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= categorypost.post }}&text=New Pleph Post: {{= posttitles[categorypost.post] }}"></a>
+                    <div class="fb-like" style="align: right" data-href="http://pleph.appspot.com/{{=request.application}}/posts/view/{{= categorypost.post }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+                </p>
+                <pre class="subinfo" style="font-size: 8pt; text-align: left;">{{=XML(postinfo[categorypost.post])}}</pre>
+                <div>{{=markdown.WIKI(postexcerpts[categorypost.post], safe_mode = "safe")}}</div>
+                <div class="subinfo" id="container">
+                    <div id="row">
+                        {{ if categories: }}
+                            <div id="left">
+                            {{ categorycounter = 1 }}
+                            <div><strong>Categories</strong>
+                                {{ for category in categories[categorypost.post]: }}
+                                <a href="/{{=request.application}}/categories/view/{{= category }}">{{= categories[categorypost.post][category] }}</a>{{ if categorycounter != len(categories[categorypost.post]): }}, {{ else: }}. {{ pass }}
+                                {{ categorycounter = categorycounter + 1 }}
+                                {{ pass }}
+                                </div>
+                            </div>
+                        {{ pass }}
+                        {{ if posttags: }}
+                            <div id="middle">
+                            {{ tagcounter = 1 }}
+                            <div><strong>Tags: </strong>
+                                {{ for tag in posttags: }}
+                                    {{= tag.tag }}{{ if tagcounter != len(posttags): }}, {{ else: }} {{ pass }}
+                                {{ tagcounter = tagcounter + 1 }}
+                                {{ pass }}
+                                </div>
+                            </div>
+                        {{ pass }}
+                        <div id="right-comments">
+                            <strong>Comments:</strong> <a href="/{{=request.application}}/posts/view/{{= categorypost.post }}#Comments">{{=comments[categorypost.post]}}</a>
+                        </div>
+                    </div>
+                </div>
 			</div>
 			<br/>
 		{{ pass }}

@@ -7,16 +7,20 @@ else:
     db = DAL("sqlite://storage.sqlite")     
 
 from gluon.tools import *
+import ConfigParser
+
+config = ConfigParser.ConfigParser()
+config.read("applications/init/settings.ini")
 
 mail = Mail()  
-mail.settings.server = "gae"  
-mail.settings.sender = "" 
-mail.settings.login = ""
+mail.settings.server = config.get("email", "server")
+mail.settings.sender = config.get("administrator", "email")
+mail.settings.login = config.get("administrator", "email") + ":" + config.get("administrator", "password")
 auth = Auth(globals(),db)                    
 auth.settings.mailer = mail 
-auth.settings.hmac_key = "sha512:2c209fe2-5c5a-4400-a98a-4e4d4cf04c9c"
+auth.settings.hmac_key = config.get("authentication", "hmackey")
 
-auth.settings.captcha = Recaptcha(request, "6Lc2LgoAAAAAAL_Dkqubx50GS4gq2zlKg-PibzQ0", "6Lc2LgoAAAAAAKwJ3SD7B6KVsz195xTmIb9yh31K", error_message = "Text does not match.")
+auth.settings.captcha = Recaptcha(request, config.get("recaptcha", "privatekey"), config.get("recaptcha", "publickey"), error_message = "Text does not match.")
 
 auth.define_tables()                         
 crud = Crud(globals(),db)                    

@@ -112,7 +112,7 @@ def view():
         if commentform.accepts(request.vars, session):
             to = [mail.settings.sender]
             subject = "New comment on post: '" + str(post.title) + "'"
-            message = "A new comment was posted to the blog at 'http://pleph.appspot.com'\r\rThe comment body:\r\r" + str(commentform.vars.commentbody) + "\r\r\rYou can view the comment here: http://pleph.appspot.com/" + str(request.application) + "/posts/view/" + str(postid) + "."
+            message = "A new comment was posted to the blog at 'http://pleph.appspot.com'\r\rThe comment body:\r\r" + str(commentform.vars.commentbody) + "\r\r\rYou can view the comment here: http://pleph.appspot.com/" + str(request.application) + "/posts/view/" + str(postid) + "#Comments."
             mail.send(to = to, subject = subject, message = message)
             response.flash = "Comment posted succesfully."
             redirect(URL(r=request, f="view", args=postid))
@@ -142,17 +142,24 @@ def archive():
         11: "November", 
         12: "December"}
     import datetime
+    from dateutil.relativedelta import relativedelta
     year = int(request.args(0))
     month = int(request.args(1))
-    posts = db((db.post.private == False) & (db.post.addeddate.year() == year) & (db.post.addeddate.month() == month)).select(orderby=db.post.addeddate)
+    thismonthdate = datetime.datetime(year, month, 1)
+    if month < 12:
+        followingmonthdate = thismonthdate + relativedelta(month =+ (month + 1))
+    else:
+        followingmonthdate = datetime.datetime(year + 1, 1, 1)
+    posts = db((db.post.private == False) & (db.post.addeddate >= thismonthdate) & (db.post.addeddate < followingmonthdate)).select(orderby=db.post.addeddate)
     categories = {}
     tags = {}
+    comments = {}
     for post in posts:
         relations = db(db.relations.post == post.id).select()
         categories[post.id] = dict((relation.category.id, relation.categorytitle) for relation in relations if relation.relationtype == 'category')
         tags[post.id] = [relation.tag for relation in relations if relation.relationtype == 'tag']
-    return dict(posts=posts, categories = categories, tags = tags, year = year, monthname = MONTHS[int(month)])
-    
+        comments[post.id] = db(db.comment.post == post.id).count()
+    return dict(posts=posts, categories = categories, tags = tags, year = year, monthname = MONTHS[int(month)], comments = comments)
 
 @auth.requires_membership('Admin')
 def manageposts():
