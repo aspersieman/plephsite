@@ -3,7 +3,7 @@ syntax: glob
 *.pyc
 *.pyo
 *.bak
-*.secure*
+*settings.ini*
 cache/*
 databases/*
 errors/*
