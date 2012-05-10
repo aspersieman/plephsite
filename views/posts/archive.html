@@ -33,13 +33,9 @@
             {{ pass }}
             {{ if tags: }}
                 <div id="middle">
-                {{ tagcounter = 1 }}
                 <div><strong>Tags: </strong>
-                    {{ for tag in tags[post.id]: }}
-                        {{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }} {{ pass }}
-                    {{ tagcounter = tagcounter + 1 }}
-                    {{ pass }}
-                    </div>
+                    {{= ", ".join(tags[post.id]) }}
+                </div>
                 </div>
             {{ pass }}
             <div id="right-comments">

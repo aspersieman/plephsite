@@ -40,13 +40,9 @@
 
 		{{ if tags: }}
 			<div class="subinfo">
-			{{ tagcounter = 1 }}
 			<div><strong>Tags: </strong>
-				{{ for tag in tags: }}
-					{{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }} {{ pass }}
-				{{ tagcounter = tagcounter + 1 }}
-				{{ pass }}
-				</div>
+                {{= ", ".join(tags) }}
+            </div>
 			</div>
 		{{ pass }}
 	{{else:}}

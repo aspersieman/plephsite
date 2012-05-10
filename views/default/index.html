@@ -20,29 +20,31 @@
 	{{ else: }}
 	<div>{{= markdown.WIKI(post.body, safe_mode = "safe") }}</div>
 	{{ pass }}
-	{{ if categories: }}
-		<br/>
-		<div class="subinfo">
-		{{ categorycounter = 1 }}
-		<div><strong>Categories</strong>
-			{{ for category in categories[post.id]: }}
-			<a href="/{{=request.application}}/categories/view/{{= category }}">{{= categories[post.id][category] }}</a>{{ if categorycounter != len(categories[post.id]): }}, {{ else: }}. {{ pass }}
-			{{ categorycounter = categorycounter + 1 }}
-			{{ pass }}
-			</div>
-		</div>
-	{{ pass }}
-	{{ if tags: }}
-		<div class="subinfo">
-		{{ tagcounter = 1 }}
-		<div><strong>Tags: </strong>
-			{{ for tag in tags[post.id]: }}
-				{{= tag }}{{ if tagcounter != len(tags): }}, {{ else: }} {{ pass }}
-			{{ tagcounter = tagcounter + 1 }}
-			{{ pass }}
-			</div>
-		</div>
-	{{ pass }}
+    <div class="subinfo" id="container">
+        <div id="row">
+            {{ if categories: }}
+                <div id="left">
+                {{ categorycounter = 1 }}
+                <div><strong>Categories</strong>
+                    {{ for category in categories[post.id]: }}
+                    <a href="/{{=request.application}}/categories/view/{{= category }}">{{= categories[post.id][category] }}</a>{{ if categorycounter != len(categories[post.id]): }}, {{ else: }}. {{ pass }}
+                    {{ categorycounter = categorycounter + 1 }}
+                    {{ pass }}
+                    </div>
+                </div>
+            {{ pass }}
+            {{ if tags: }}
+                <div id="middle">
+                <div><strong>Tags: </strong>
+                    {{= ", ".join(tags[post.id]) }}
+                </div>
+                </div>
+            {{ pass }}
+            <div id="right-comments">
+                <strong>Comments:</strong> <a href="/{{=request.application}}/posts/view/{{= post.id }}#Comments">{{=comments[post.id]}}</a>
+            </div>
+        </div>
+    </div>
 </div>
 <br/>
 {{ pass }}
