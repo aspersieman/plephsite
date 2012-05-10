@@ -19,45 +19,44 @@ def feed_posts():
     return form
 
 def post_archive():
-	post_dates = db().select(db.post.addeddate, orderby=db.post.addeddate)
-	MONTHS = {
-		1: "Jan", 
-		2: "Feb", 
-		3: "Mar", 
-		4: "Apr", 
-		5: "May", 
-		6: "Jun", 
-		7: "Jul", 
-		8: "Aug", 
-		9: "Sep", 
-		10: "Oct", 
-		11: "Nov", 
-		12: "Dec"
-	}
-	post_archive_html = ""
-	if post_dates:
-		currentmonth = post_dates[0]['post.addeddate'].month
-		currentyear = post_dates[0]['post.addeddate'].year
-		monthcounter = 0
-		posts_archive = {}
-		for post_date in post_dates:
-			if post_date['post.addeddate'].month == currentmonth and post_date['post.addeddate'] == currentyear:
-				posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + ")"
-				monthcounter += 1
-			else:
-				currentmonth = post_date['post.addeddate'].month
-				currentyear = post_date['post.addeddate'].year
-				monthcounter += 1
-				posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + ")"
+    post_dates = db(db.post.private == False).select(db.post.addeddate, orderby=db.post.addeddate)
+    MONTHS = {
+        1: "Jan", 
+        2: "Feb", 
+        3: "Mar", 
+        4: "Apr", 
+        5: "May", 
+        6: "Jun", 
+        7: "Jul", 
+        8: "Aug", 
+        9: "Sep", 
+        10: "Oct", 
+        11: "Nov", 
+        12: "Dec"
+    }
+    post_archive_html = ""
+    import datetime
+    if post_dates:
+        posts_archive = {}
+        for post_date in sorted(post_dates):
+            currentmonth = int(post_date['post.addeddate'].month)
+            currentyear = int(post_date['post.addeddate'].year)
+            thismonthdate = datetime.datetime(currentyear, currentmonth, 1)
+            if currentmonth < 12:
+                followingmonthdate = datetime.datetime(currentyear, currentmonth + 1, 1)
+            else:
+                followingmonthdate = datetime.datetime(currentyear + 1, 1, 1)
+            monthcounter = db((db.post.private == False) & (db.post.addeddate >= thismonthdate) & (db.post.addeddate < followingmonthdate)).count()
+            posts_archive[str(currentyear) + " " + str(currentmonth)] = " (" + str(monthcounter) + ")"
 
-		post_archive_html += "<div class='sidepanelheading'>Post Archives</div>"
-		for post_arch in posts_archive:
-			year = post_arch.split(" ")[0] 
-			month = post_arch.split(" ")[1]
-			monthname = MONTHS[int(month)]
-			if len(str(month)) == 1:
-				month = "0" + str(month)
-			post_archive_html += "<div class='sidepanel'><a href='/" + request.application + "/posts/archive/" + str(year) + "/" + str(month) + "'>" + year + " " + monthname + posts_archive[post_arch] + "</a></div>"
+        post_archive_html += "<div class='sidepanelheading'>Post Archives</div>"
+        for post_arch in sorted(posts_archive, reverse = True):
+            year = post_arch.split(" ")[0] 
+            month = post_arch.split(" ")[1]
+            monthname = MONTHS[int(month)]
+            if len(str(month)) == 1:
+                month = "0" + str(month)
+            post_archive_html += "<div class='sidepanel'><a href='/" + request.application + "/posts/archive/" + str(year) + "/" + str(month) + "'>" + year + " " + monthname + posts_archive[post_arch] + "</a></div>"
 
-	form = XML(post_archive_html)
-	return form
+    form = XML(post_archive_html)
+    return form

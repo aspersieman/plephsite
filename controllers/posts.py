@@ -142,12 +142,11 @@ def archive():
         11: "November", 
         12: "December"}
     import datetime
-    from dateutil.relativedelta import relativedelta
     year = int(request.args(0))
     month = int(request.args(1))
     thismonthdate = datetime.datetime(year, month, 1)
     if month < 12:
-        followingmonthdate = thismonthdate + relativedelta(month =+ (month + 1))
+        followingmonthdate = datetime.datetime(year, month + 1, 1)
     else:
         followingmonthdate = datetime.datetime(year + 1, 1, 1)
     posts = db((db.post.private == False) & (db.post.addeddate >= thismonthdate) & (db.post.addeddate < followingmonthdate)).select(orderby=db.post.addeddate)

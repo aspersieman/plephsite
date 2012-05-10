@@ -7,11 +7,13 @@ def index():
     posts = db(db.post.private == False).select(orderby=~db.post.addeddate, limitby = (0, 5))
     categories = {}
     tags = {}
+    comments = {}
     for post in posts:
         relations = db(db.relations.post == post.id).select()
         categories[post.id] = dict((relation.category.id, relation.categorytitle) for relation in relations if relation.relationtype == 'category')
         tags[post.id] = [relation.tag for relation in relations if relation.relationtype == 'tag']
-    return dict(posts=posts, categories = categories, tags = tags)
+        comments[post.id] = db(db.comment.post == post.id).count()
+    return dict(posts=posts, categories = categories, tags = tags, comments = comments)
 
 def user():
     """
