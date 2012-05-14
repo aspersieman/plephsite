@@ -49,3 +49,6 @@ def call():
     """
     session.forget()
     return service()
+
+def dbadmin():
+    redirect("https://" + request.env.http_host + "/" + request.application + "/appadmin")
