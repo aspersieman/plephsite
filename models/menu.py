@@ -36,7 +36,7 @@ if 'auth' in globals():
                     ['Manage Posts', False, URL(request.application, 'posts', 'manageposts')],
                     ['Manage Images', False, URL(request.application, 'images', 'index')],
                     ['Manage Categories', False, URL(request.application, 'posts', 'data/create/categories')],
-                    ['Manage DB', False, URL(request.application, 'appadmin', "index")]
+                    ['Manage DB', False, URL(request.application, "default", "dbadmin")]
                 ],
             ],
         ]
