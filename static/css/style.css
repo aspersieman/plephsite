@@ -94,6 +94,7 @@ a.tooltip:hover span {
     color: #000000; 
 	opacity: 0.8;
 	padding: 3px;
+    border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
@@ -193,6 +194,7 @@ blockquote > *:before {
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 0.8em;
+    border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
@@ -216,6 +218,7 @@ blockquote > *:before {
 	width: 130px;
 	text-decoration: none;
 	font-weight: bold;
+    border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
@@ -289,6 +292,7 @@ a:hover {
 
 table {
 	border: 1px solid blue;
+    border-radius: 3px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	text-align: left;
@@ -326,6 +330,8 @@ div.maincontent {
 	font-size: 1em;
 	padding-left: 10px;
 	padding-right: 10px;
+    border-radius: 5px;
+    border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
@@ -340,6 +346,7 @@ div.subinfo {
 	text-decoration: none;
 	font-size: 0.8em;
 	text-align: left;
+    border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
@@ -363,6 +370,7 @@ div.commentcontent {
 	font-size: 1em;
 	padding-left: 10px;
 	padding-right: 10px;
+    border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
@@ -404,6 +412,7 @@ div.sidepanelheading {
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 0.8em;
+    border-radius: 2px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
@@ -427,6 +436,7 @@ div.sidepanel {
 	width: 130px;
 	text-decoration: none;
 	font-weight: bold;
+    border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
@@ -467,6 +477,7 @@ img {
 	/*width: 130px; */
 	text-decoration: none;
 	font-weight: bold;
+    border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
@@ -493,12 +504,14 @@ div.flash {
     cursor: pointer;
     background: black;
     border: 2px solid #fff; 
+    border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     z-index: 2;
 }
 
 div.error {
+    border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     background-color: red;
