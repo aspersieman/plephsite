@@ -11,7 +11,16 @@
 		document.title = {{=post.title}};
 	</script>
 	<p class="post-social">
-		<a class="post-googleplus"  title="PlusOne" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}"></a>
+        <!-- Place this tag where you want the +1 button to render. -->
+        <div class="g-plusone" data-annotation="none" href="{{=request.env.wsgi_url_scheme}}://{{=request.env.http_host}}/{{=request.application}}/posts/view/{{= post.id }}"></div>
+        <!-- Place this tag after the last +1 button tag. -->
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
 		<a class="post-twitter"  title="Twitter" target="_blank" href="http://twitter.com/intent/tweet?url=http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}&text=New Pleph Post: {{= post.title }}"></a>
 		<div class="fb-like" style="align: right" data-href="http://pleph.appspot.com/{{=request.application}}/posts/view/{{= post.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 	</p>
